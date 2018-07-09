@@ -1,5 +1,5 @@
 # Build on top of the DutchX
-This project is a series of example on how to build applications on top of the
+This project is a series of examples on how to build applications on top of the
 DutchX.
 
 ## Start from the begining
@@ -22,8 +22,8 @@ pair.
 (`TODO`) This example shows how you can use the DutchX contracts, for example to
  get some information from the contract and to **participate in an auction as a buyer**.
 
-# Give some feedback and help us improve
-If you folow the guide and you encounter any inconvenience, let us kwnow.
+# Give some feedback and help us improve this docs
+If you follow the guide and you encounter any inconvenience, let us kwnow.
 
 Pull requests are welcomed, and any feedback can be given in the 
 [DutchX Gitter Channel](https://gitter.im/gnosis/DutchX).
