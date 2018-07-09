@@ -1,60 +1,43 @@
 # Build on top of the DutchX
-This project is an example on how to build on top of the DutchX.
+This project is a series of example on how to build applications on top of the
+DutchX.
 
+## Start from the begining
+So the examples are part of a guide and you are suppouse to do them in order.
 
-## Create a basic truffle contract
-Create your `my-cool-app` project:
-```bash
-mkdir my-cool-app
-cd my-cool-app
-npm init
-git init
-touch .gitignore
-# Edit .gitignore
-#   add at least: "node_modules" and "build" dirs
-```
+So the first one should be [Example 01: Build on top of the DX](./example_01_build-of-top-of-dx/README.md)
 
-Make it a truffle project:
-```bash
-npm install truffle@4.1.5 --save-dev
-npm install truffle-contract@^3.0.6 truffle-hdwallet-provider@^0.0.5 --save
-mkdir contracts migrations
-```
+All the guides, and reference documentation can be found in:
+* [http://dutchx.readthedocs.io/en/latest/](http://dutchx.readthedocs.io/en/latest/)
 
-Add a truffle config:
-* Add [truffle.js](./truffle.js) into the root of the project.
+The complete list of examples is:
+* [Example 01: Build on top of the DX](./example_01_build-of-top-of-dx/README.md): 
+Shows how to create a new project from scratch that depends on DutchX and
+how you can **deploy the contracts** in a `ganache-cli` local node.
+* [Example 02: Setup the project](./example_02_setup-the-project/README.md): 
+(`TODO`) This example shows how to add new migrations to deploy your own 
+contracts, and how to **setup the DutchX**. For example for listing your own token 
+pair.
+* [Example 03: Invoke the DutchX logic](./example_03_invoke-the-dutchx-logic/README.md):
+(`TODO`) This example shows how you can use the DutchX contracts, for example to
+ get some information from the contract and to **participate in an auction as a buyer**.
 
-Add the first migration and it's contract:
-* [Migrations.sol](./contracts/Migrations.sol) into `contracts` dir
-* [1_initial_migration.js](./migrations/1_initial_migration.js) into `migrations` dir
+# Give some feedback and help us improve
+If you folow the guide and you encounter any inconvenience, let us kwnow.
 
-## Add a new migration for the DutchX
-Add the required dependencies
-```bash
-npm install @gnosis.pm/dx-contracts --save
-```
+Pull requests are welcomed, and any feedback can be given in the 
+[DutchX Gitter Channel](https://gitter.im/gnosis/DutchX).
 
-Then we create a migration that deploys the `DutchX` and it's dependencies, an 
-easy way would would be to create a migration that:
-* Only executes in the `development` network. Note that `rinkeby` and `mainet` 
-contracts are already deployed.
-* Uses the contracts that are in our NPM dependencies, so we avoid repetition.
-* Uses the migration scripts that are in our NPM dependencies. **DutchX** NPM 
-module provides a simple migration source that can be referenced to ease the 
-local development.
-* So we just create a migration like 
-[2_DEV_migrate_dependencies.js](./migrations/2_DEV_migrate_dependencies.js) and 
-add it to the `migrations` dir.
+# License
+All smart contracts are released under GPL v.3.
 
-## Apply the migrations
-```bash
-# Install ganache
-npm install -g ganache-cli
+The Front ends, API, cli, bots, documentation and services under MIT License.
 
-# Run a ganache cli
-ganache-cli -d
+# Security and Liability
+This software code is made available on an as-is basis free of charge and by 
+doing so, no personal data is collected, used, stored, disclosed or secured by 
+the creators. Depending on how you use this software code, you may be required 
+to provide and apply an appropriate privacy policy to comply with law.
 
-# Run migrations
-#   It's also a good idea to add it a a package.json script
-npx truffle migrate
-```
+An API gathers publicly available data from the Ethereum blockchain on the 
+usage of this software code.
