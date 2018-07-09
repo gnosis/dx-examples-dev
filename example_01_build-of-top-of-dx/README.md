@@ -5,7 +5,7 @@ that depends on DutchX and how you can **deploy the contracts** in a
 
 > This example is part of the guide http://dutchx.readthedocs.io/en/latest/
 >
-> You can find other examples in the [Build on top of DutchX project](../README.md)
+> You can find other examples in the [Build on top of DutchX project](../)
 
 ## Create a basic truffle contract
 Create your `my-cool-app` project:
