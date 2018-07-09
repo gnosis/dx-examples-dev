@@ -2,23 +2,23 @@
 This project is a series of examples on how to build applications on top of the
 DutchX.
 
-## Start from the begining
-So the examples are part of a guide and you are suppouse to do them in order.
-
-So the first one should be [Example 01: Build on top of the DX](./example_01_build-of-top-of-dx/README.md)
-
 All the guides, and reference documentation can be found in:
 * [http://dutchx.readthedocs.io/en/latest/](http://dutchx.readthedocs.io/en/latest/)
 
+## Start from the begining
+So the examples are part of a guide and you are suppouse to do them in order.
+
+So the first one should be [Example 01: Build on top of the DX](https://github.com/gnosis/dx-example-build-on-top-of-dutchx/tree/master/example_01_build-of-top-of-dx)
+
 The complete list of examples is:
-* [Example 01: Build on top of the DX](./example_01_build-of-top-of-dx/README.md): 
+* [Example 01: Build on top of the DX](https://github.com/gnosis/dx-example-build-on-top-of-dutchx/tree/master/example_01_build-of-top-of-dx): 
 Shows how to create a new project from scratch that depends on DutchX and
 how you can **deploy the contracts** in a `ganache-cli` local node.
-* [Example 02: Setup the project](./example_02_setup-the-project/README.md): 
+* [Example 02: Setup the project](https://github.com/gnosis/dx-example-build-on-top-of-dutchx/tree/master/example_02_setup-the-project): 
 (`TODO`) This example shows how to add new migrations to deploy your own 
 contracts, and how to **setup the DutchX**. For example for listing your own token 
 pair.
-* [Example 03: Invoke the DutchX logic](./example_03_invoke-the-dutchx-logic/README.md):
+* [Example 03: Invoke the DutchX logic](https://github.com/gnosis/dx-example-build-on-top-of-dutchx/tree/master/example_03_invoke-the-dutchx-logic):
 (`TODO`) This example shows how you can use the DutchX contracts, for example to
  get some information from the contract and to **participate in an auction as a buyer**.
 
