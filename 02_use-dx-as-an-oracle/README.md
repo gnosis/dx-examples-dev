@@ -354,4 +354,4 @@ The DutchX has information about all the closing prices for all the auctions,
 also there are informations about trading volumes, closing dates, that could be
 used to make a more sofisticated estimation.
 
-Now you can continue with [Example 03: List your own toke pair](https://github.com/gnosis/dx-example-build-on-top-of-dutchx/tree/master/03_list_your_own_toke_pair): TODO:
+Now you can continue with [Example 03: List your own token pair](https://github.com/gnosis/dx-example-build-on-top-of-dutchx/tree/master/03_list_your_own_toke_pair): TODO:
