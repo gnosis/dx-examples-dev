@@ -18,7 +18,6 @@ module.exports = function(deployer, network, accounts) {
     })
 
   if (network === 'development') {    
-    // Just WRAP some ETH so we have a testing ERC20 (WETH)
     const EtherToken = artifacts.require("EtherToken")
   
     deployerPromise = deployerPromise

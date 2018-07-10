@@ -1,6 +1,6 @@
 # Example 01: Build on top of the DX
 This project is an example that shows how to create a new project from scratch 
-that depends on DutchX and how you can **deploy the contracts** in a 
+that depends on DutchX and how you can deploy the DutchX contracts in a 
 `ganache-cli` local node.
 
 > This example is part of the guide http://dutchx.readthedocs.io/en/latest/
@@ -70,3 +70,14 @@ ganache-cli -d
 #   It's also a good idea to add it a a package.json script
 npx truffle migrate
 ```
+
+## Next steps
+Congratulations! you now have a truffle project that deploys all the DutchX contracts as 
+part of it's first migration.
+
+Now you can continue with [Example 02: Use DutchX as an Oracle](https://github.com/gnosis/dx-example-build-on-top-of-dutchx/tree/master/02_use-dx-as-an-oracle): 
+* This example shows how to create your own contract and migrations that makes 
+use of the DutchX.
+* In this example we will create a `Safe` contract to deposit fund. We will
+use the DutchX to help us estimate the price in `USD` for any token in our 
+`Safe`.

@@ -21,7 +21,7 @@ contract Safe {
         dx = DutchExchange(_dx);
     }
 
-    function updateDutchExchange (DutchExchange _dx) public {
+    function updateDutchExchange (DutchExchange _dx) public onlyOwner {
         dx = _dx;
     }
     
@@ -31,9 +31,22 @@ contract Safe {
         
         balances[token] += amount;
         emit Deposit(token, amount);
+
+        return amount;
+    }
+    
+    function withdraw (address token, uint amount) public onlyOwner returns (uint) {
+        require(amount > 0);
+        require(amount <= balances[token]);
+        require(Token(token).transfer(msg.sender, amount));
+        
+        balances[token] -= amount;
+        emit Withdraw(token, amount);
+
+        return amount;
     }
 
-    function getBalanceInUSD (address token) public view returns (uint, uint) {
+    function getBalanceInUsd (address token) public view returns (uint, uint) {
         uint pricetNum;
         uint priceDen;
         // Get the price in ETH for a token
@@ -48,13 +61,6 @@ contract Safe {
         //    balance * Price TOKEN-ETH * price ETH-USD
         uint balance = balances[token];
         return (balance * pricetNum * etherUsdPrice, priceDen);
-    }
-    
-    function withdraw (address token, uint amount) public onlyOwner returns (uint) {
-        require(amount > 0);
-        require(amount <= balances[token]);
-        
-        emit Withdraw(token, amount);
     } 
     
     event Withdraw(
