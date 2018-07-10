@@ -11,6 +11,7 @@ module.exports = function(deployer, network, accounts) {
   let deployerPromise = deployer
     // Make sure DutchX is deployed
     .then(() => DutchExchangeProxy.deployed())
+
     // Deploy Safe contract
     .then(dxProxy => {
       console.log('Deploying Safe with %s as the owner and %s as the DutchExchange contract', account, dxProxy.address)

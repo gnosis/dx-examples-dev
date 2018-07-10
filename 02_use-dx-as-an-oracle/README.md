@@ -19,10 +19,10 @@ This second example starts from the `my-cool-app` code generated after
 completing the first example.
 
 # Uses the DutchX as a price oracle
-Now that you have a truffle project that on his first migration deploys the dx
-(only in local development), you can add your own.
+Now that you have a truffle project that deploys the dx on it's first migration 
+(only in local development), you can add your own ones.
 
-Let's say we create a contract called `Safe` that would allow it's owner to save
+Let's say we want to create a contract called `Safe` that would allow it's owner to deposit
 some [ERC20 tokens](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md) 
 in there.
 
@@ -87,13 +87,14 @@ contract Safe {
 ```
 
 Now that we have our basic implementation of the `Safe` contract, let's say we
-want return our balance, but instead of in the currency of the token, we want 
+want to return our balance, but instead of in the currency of the token, we want 
 to return it in `USD`.
 
-It happens that **DutchX** can be used as a price oracle, and can tell you the 
+It happens that **DutchX can be used as a price oracle**, and can tell you the 
 closing price of any listed token pair. 
 
-So let's get to it:
+So let's add the dependency so our `Safe` contract can invoke any `DutchExchange`
+operation. We can just follow this 4 steps:
 
 ```js
 pragma solidity ^0.4.21;
@@ -132,13 +133,13 @@ So, let's create a `getBalanceInUsd (address token)` function that returns
 the balance in `USD` as a pair of `uint`, being the first one the numerator and 
 the second one denominator of the balance.
 * The first thing that it does, is to get the price of the `token vs ETH` in the 
-Dutch X by using the function `getPriceOfTokenInLastAuction(token)`.
+DutchX by using the function `getPriceOfTokenInLastAuction(token)`.
 * The second thing is asking for the price of `ETH vs USD` using the 
 `PriceOracleInterface` of the DutchX (that delegates to 
-([MakerDao Medianizer](https://developer.makerdao.com/feeds/)).
+[MakerDao Medianizer](https://developer.makerdao.com/feeds/)).
 * The third thing is to multiplied the balance and both prices.
 
-Simple isn't it? 
+This is how the function would look:
 
 ```js
 // 1. We add the contract PriceOracleInterface
@@ -168,11 +169,12 @@ contract Safe {
 }
 ```
 
+So we are done with the contract.
+
 You can check the complete Safe contract [here](./contracts/Safe.sol).
 
-
 ## Add migrations for your new contract
-To deploy our new contract, we depend on having the **DutchX** having deployed,
+To deploy our new contract, we depend on having deployed the **DutchX**,
 since it's deployed in the migration `2_DEV_dependencies.js` we are good to go.
 
 Create a new migration `migrations/3_deploy_safe.js`
@@ -190,6 +192,7 @@ module.exports = function(deployer, network, accounts) {
   return deployer
     // Make sure DutchX is deployed
     .then(() => DutchExchangeProxy.deployed())
+
     // Deploy Safe contract
     .then(dxProxy => {
       console.log('Deploying Safe with %s as the owner and %s as the DutchExchange contract', account, dxProxy.address)
@@ -206,12 +209,12 @@ npx truffle migrate
 If everything was smooth, you should have the `Safe` contract deployed and 
 pointing to the `DutchExchangeProxy` address.
 
-## Create same test setup for development
-Sometime it's usefull to add in the migrations some setup that should be done
+## Create some test setup for development
+Sometimes it's usefull to add, in the migrations, some setup that should be done
 only in the local `ganache-cli` node.
 
-A easy way of solving this, add this logic only if the network is the 
-`development` one:
+A easy way of solving this is adding the logic only for the network 
+`development`:
 
 ```js
 // ...
@@ -226,11 +229,12 @@ module.exports = function(deployer, network, accounts) {
 ```
 
 So, let's setup the following:
-* We will deposit Wrapped Ether token (`WETH`) in our safe
+* We will deposit `1 ether` in Wrapped Ether token (`WETH`) in our safe
 * So, first we need to wrap `Ether` into the `EtherToken` contract
 * Then, we use the ERC20 `approve` method to allow the safe to take the `WETH`.
 * Finally, we do a `deposit` into the `Safe` contract.
 
+This is how it would look:
 ```js
 const ETH_TEST_AMOUNT = 1e18
 
@@ -284,7 +288,7 @@ npx truffle migrate --reset
 ```
 
 # Check the result in the console
-The `truffle console` is a great tool that we can use now to check our contract:
+The `truffle console` is a great tool for developing:
 ```bash
 npx truffle console
 ```
@@ -343,16 +347,11 @@ safe.getBalanceInUsd.call(weth.address).then(([n, d]) => console.log('Blance of 
 Congratulations! Now you have deployed your own contracts that makes use of the
 DutchX.
 
-This example was using the DutchX as an oracle in a very basic way, it's just
-using the last price of the last auction for getting a price estimate. 
+This example was using the DutchX as an oracle in a very basic way. It's just
+uses the price of the last auction for getting a price estimate. 
 
 The DutchX has information about all the closing prices for all the auctions, 
 also there are informations about trading volumes, closing dates, that could be
 used to make a more sofisticated estimation.
 
-Now you can continue with [Example 02: Use DutchX as an Oracle](https://github.com/gnosis/dx-example-build-on-top-of-dutchx/tree/master/02_use-dx-as-an-oracle): 
-* This example shows how to create your own contract and migrations that makes 
-use of the DutchX.
-* In this example we will create a `Safe` contract to deposit fund. We will
-use the DutchX to help us estimate the price in `USD` for any token in our 
-`Safe`.
+Now you can continue with [Example 03: List your own toke pair](https://github.com/gnosis/dx-example-build-on-top-of-dutchx/tree/master/03_list_your_own_toke_pair): TODO:
