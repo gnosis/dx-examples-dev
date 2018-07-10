@@ -5,7 +5,7 @@ pair.
 
 > This example is part of the guide http://dutchx.readthedocs.io/en/latest/
 >
-> You can find other examples in the [Build on top of DutchX project](https://github.com/gnosis/dx-example-build-on-top-of-dutchx/blob/master/01_build-of-top-of-dx/README.md)
+> You can find other examples in the [Build on top of DutchX project](https://github.com/gnosis/dx-example-build-on-top-of-dutchx)
 
 ## First things first
 If you haven't done so, you have to complete firts the 
