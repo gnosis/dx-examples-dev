@@ -1,0 +1,19 @@
+{
+  "name": "01_build-of-top-of-dx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "migrate": "truffle migrate"
+  },
+  "author": "Angel Rodriguez <anxolin@gmail.com> (https://github.com/anxolin)",
+  "license": "ISC",
+  "dependencies": {
+    "@gnosis.pm/dx-contracts": "^1.0.1",
+    "truffle-contract": "^3.0.6",
+    "truffle-hdwallet-provider": "0.0.5"
+  },
+  "devDependencies": {
+    "truffle": "^4.1.5"
+  }
+}
