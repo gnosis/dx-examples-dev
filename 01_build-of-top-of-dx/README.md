@@ -50,6 +50,13 @@ truffle will pull and compile all the required contracts.
 
 Check the code of the contract [here](./CoolAppDependencies/CoolAppDependencies.sol).
 
+Now, if we compile the contracts, we'll see how the `DutchExchange` is being 
+compiled among all the other contracts it depends on:
+
+```bash
+npx truffle compile
+````
+
 ## Add a new migration for the DutchX
 Add the required dependencies
 ```bash
