@@ -40,6 +40,16 @@ Add the first migration and it's contract:
 * [Migrations.sol](./contracts/Migrations.sol) into `contracts` dir
 * [1_initial_migration.js](./migrations/1_initial_migration.js) into `migrations` dir
 
+## Make sure we compile all the DutchX
+To ensure that for local development, truffle finds all DutchX contract, we can
+create a dummy contract call `CoolAppDependencies`.
+
+This contract won't do anything, we don't even use it, the important thing is 
+that it must import `@gnosis.pm/dx-contracts/contracts/DxDevDependencies.sol` so
+truffle will pull and compile all the required contracts.
+
+Check the code of the contract [here](./CoolAppDependencies/CoolAppDependencies.sol).
+
 ## Add a new migration for the DutchX
 Add the required dependencies
 ```bash
