@@ -18,7 +18,7 @@ If you haven't done so, you have to complete firts the
 This second example starts from the `my-cool-app` code generated after 
 completing the first example.
 
-# Uses the DutchX as a price oracle
+# Create your own contract
 Now that you have a truffle project that deploys the dx on it's first migration 
 (only in local development), you can add your own ones.
 
@@ -86,6 +86,7 @@ contract Safe {
 }
 ```
 
+# Add DutchX as a dependency
 Now that we have our basic implementation of the `Safe` contract, let's say we
 want to return our balance, but instead of in the currency of the token, we want 
 to return it in `USD`.
@@ -129,9 +130,11 @@ contract Safe {
 
 Great! Now we have access from our contract to any **DutchX** logic.
 
-So, let's create a `getBalanceInUsd (address token)` function that returns 
-the balance in `USD` as a pair of `uint`, being the first one the numerator and 
-the second one denominator of the balance.
+# Use the DutchX logic
+Now that we can invoke any DutchX logic, let's create a 
+`getBalanceInUsd (address token)` function that returns the balance in `USD` 
+as a pair of `uint`, being the first one the **numerator** and the second one 
+**denominator** of the balance.
 * The first thing that it does, is to get the price of the `token vs ETH` in the 
 DutchX by using the function `getPriceOfTokenInLastAuction(token)`.
 * The second thing is asking for the price of `ETH vs USD` using the 
