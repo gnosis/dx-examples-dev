@@ -9,11 +9,11 @@ use the DutchX to help us estimate the price in `USD` for any token in our
 
 > This example is part of the guide http://dutchx.readthedocs.io/en/latest/
 >
-> You can find other examples in the [Build on top of DutchX project](https://github.com/gnosis/dx-example-build-on-top-of-dutchx)
+> You can find other examples in the [Build on top of DutchX project](https://github.com/gnosis/dx-examples-dev)
 
 # First things first
 If you haven't done so, you have to complete firts the 
-[Example 01: Build on top of the DX](https://github.com/gnosis/dx-example-build-on-top-of-dutchx/tree/master/01_build-of-top-of-dx).
+[Example 01: Build on top of the DX](https://github.com/gnosis/dx-examples-dev/tree/master/01_build-of-top-of-dx).
 
 This second example starts from the `my-cool-app` code generated after 
 completing the first example.
@@ -357,4 +357,4 @@ The DutchX has information about all the closing prices for all the auctions,
 also there are informations about trading volumes, closing dates, that could be
 used to make a more sofisticated estimation.
 
-Now you can continue with [Example 03: List your own token pair](https://github.com/gnosis/dx-example-build-on-top-of-dutchx/tree/master/03_list_your_own_toke_pair): TODO:
+Now you can continue with [Example 03: List your own token pair](https://github.com/gnosis/dx-examples-dev/tree/master/03_list_your_own_toke_pair): TODO:

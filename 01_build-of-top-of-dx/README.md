@@ -5,7 +5,7 @@ that depends on DutchX and how you can deploy the DutchX contracts in a
 
 > This example is part of the guide http://dutchx.readthedocs.io/en/latest/
 >
-> You can find other examples in the [Build on top of DutchX project](https://github.com/gnosis/dx-example-build-on-top-of-dutchx)
+> You can find other examples in the [Build on top of DutchX project](https://github.com/gnosis/dx-examples-dev)
 
 ## Create a basic truffle contract
 Create your `my-cool-app` project:
@@ -92,7 +92,7 @@ npx truffle migrate
 Congratulations! you now have a truffle project that deploys all the DutchX contracts as 
 part of it's first migration.
 
-Now you can continue with [Example 02: Use DutchX as an Oracle](https://github.com/gnosis/dx-example-build-on-top-of-dutchx/tree/master/02_use-dx-as-an-oracle): 
+Now you can continue with [Example 02: Use DutchX as an Oracle](https://github.com/gnosis/dx-examples-dev/tree/master/02_use-dx-as-an-oracle): 
 * This example shows how to create your own contract and migrations that makes 
 use of the DutchX.
 * In this example we will create a `Safe` contract to deposit fund. We will
