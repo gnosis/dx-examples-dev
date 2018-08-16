@@ -1,7 +1,7 @@
 # Example 03: List your own token pair
 This example is not ready yet, this is a work in progress.
 
-In the meantime, please check the documentation on how to [Add a trading token pair to DutchX
+In the meantime, please check the documentation on how to [Add a token pair to DutchX
 ](http://dutchx.readthedocs.io/en/latest/add-token-pair.html).
 
 > This example is part of the guide http://dutchx.readthedocs.io/en/latest/

@@ -88,8 +88,8 @@ contract Safe {
 
 # Add DutchX as a dependency
 Now that we have our basic implementation of the `Safe` contract, let's say we
-want to return our balance, but instead of in the currency of the token, we want 
-to return it in `USD`.
+want to return our balance, but instead of returing it in the currency of the 
+token, we want to return it in `USD`.
 
 It happens that **DutchX can be used as a price oracle**, and can tell you the 
 closing price of any listed token pair. 
