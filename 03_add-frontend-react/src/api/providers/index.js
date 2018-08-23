@@ -1,4 +1,5 @@
 import Web3 from 'web3'
+import { networkById, ETHEREUM_NETWORKS } from '../../globals' 
 
 export const getAccount = async provider => {
   const [account] = await provider.web3.eth.getAccounts()
@@ -9,7 +10,7 @@ export const getAccount = async provider => {
 export const getNetwork = async provider => {
   const networkId = await provider.web3.eth.net.getId()
 
-  return networkById[networkId] || ETHEREUM_NETWORKS.UNKNOWN
+  return networkById[networkId] || 'Unknown - Maybe localhost?'
 }
 
 export const getBalance = async (provider, account) => {
