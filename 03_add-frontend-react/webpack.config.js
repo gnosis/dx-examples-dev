@@ -37,7 +37,7 @@ module.exports = (_, { mode }) => {
     module: {
       rules: [
         {
-          test: /\.css$/,
+          test: /\.s?css$/,
           use: [
             prodBuild ? MiniCssExtractPlugin.loader : 'style-loader',
             {
@@ -47,6 +47,15 @@ module.exports = (_, { mode }) => {
               },
             },
           ],
+        },
+        {
+          test: /\.scss$/,
+          use: {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
         },
         {
           test: /\.jsx?$/,

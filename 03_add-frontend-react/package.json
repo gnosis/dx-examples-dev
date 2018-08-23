@@ -35,7 +35,6 @@
     "react-hot-loader": "^4.2.0",
     "style-loader": "^0.21.0",
     "truffle-contract": "^3.0.5",
-    "truffle-hdwallet-provider": "0.0.5",
     "web3": "^1.0.0-beta.34"
   },
   "devDependencies": {
@@ -63,13 +62,14 @@
     "eslint-plugin-jest": "^21.17.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.9.1",
-    "flow-bin": "^0.74.0",
     "ganache-cli": "^6.1.0",
     "glob": "^7.1.2",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.4.0",
     "minimist": "^1.2.0",
+    "node-sass": "^4.9.3",
+    "sass-loader": "^7.1.0",
     "truffle": "4.1.5",
     "truffle-hdwallet-provider": "0.0.5",
     "val-loader": "^1.1.0",
