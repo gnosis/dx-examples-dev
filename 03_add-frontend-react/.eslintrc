@@ -1,0 +1,163 @@
+{
+    "extends": [
+      "airbnb"
+    ],
+    "parser": "babel-eslint",
+    "plugins": [
+      "jest"
+    ],
+    "settings": {
+      "import/resolver": {
+        "webpack": {
+          "config": "webpack.config.js"
+        }
+      },
+      "import/extensions": [
+        ".js",
+        ".jsx"
+      ],
+      "import/ignore": [
+        "\\.(s?css|less|styl|svg|json)$"
+      ]
+    },
+    "rules": {
+      "jsx-a11y/label-has-for": 0,
+      "jsx-a11y/click-events-have-key-events": 0,
+      "import/no-unresolved": [
+        2,
+        {
+          "commonjs": true,
+          "amd": true,
+          "caseSensitive": true
+        }
+      ],
+      "import/named": 2,
+      "import/default": 2,
+      "import/namespace": 2,
+      "react/jsx-filename-extension": [
+        1,
+        {
+          "extensions": [
+            ".js",
+            ".jsx"
+          ]
+        }
+      ],
+      "react/prop-types": 0,
+      "react/forbid-prop-types": [
+        1,
+        {
+          "forbid": [
+            "object",
+            "any"
+          ]
+        }
+      ],
+      "no-console": [
+        "warn",
+        {
+          "allow": [
+            "warn",
+            "error"
+          ]
+        }
+      ],
+      "class-methods-use-this": 0,
+      "one-var": 0,
+      "one-var-declaration-per-line": 0,
+      "no-nested-ternary": 0,
+      "no-await-in-loop": 1,
+      "no-multi-assign": 0,
+      "object-curly-newline": 0,
+      "no-param-reassign": 0,
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "devDependencies": true,
+          "optionalDependencies": false,
+          "peerDependencies": false
+        }
+      ],
+      "import/no-dynamic-require": 0,
+      "global-require": 0,
+      "no-mixed-operators": [
+        "error",
+        {
+          "groups": [
+            [
+              "&",
+              "|",
+              "^",
+              "~",
+              "<<",
+              ">>",
+              ">>>"
+            ],
+            [
+              "==",
+              "!=",
+              "===",
+              "!==",
+              ">",
+              ">=",
+              "<",
+              "<="
+            ],
+            [
+              "&&",
+              "||"
+            ],
+            [
+              "in",
+              "instanceof"
+            ]
+          ],
+          "allowSamePrecedence": true
+        }
+      ],
+      "react/no-unused-state": 0,
+      "react/no-did-mount-set-state": 0,
+      "no-use-before-define": [
+        "error",
+        "nofunc"
+      ],
+      "semi": [
+        "error",
+        "never"
+      ],
+      "max-len": [
+        "error",
+        150,
+        1,
+        {
+          "ignoreUrls": true,
+          "ignoreComments": false,
+          "ignoreRegExpLiterals": true,
+          "ignoreStrings": true,
+          "ignoreTemplateLiterals": true
+        }
+      ],
+      "no-restricted-syntax": [
+        "error",
+        "WithStatement"
+      ],
+      "consistent-return": 0,
+      "prefer-const": [
+        "error",
+        {
+          "destructuring": "all"
+        }
+      ]
+    },
+    "env": {
+      "jest/globals": true,
+      "browser": true,
+      "mocha": true
+    },
+    "globals": {
+      "assert": true,
+      "contract": true,
+      "artifacts": true,
+      "web3": true
+    }
+  }
