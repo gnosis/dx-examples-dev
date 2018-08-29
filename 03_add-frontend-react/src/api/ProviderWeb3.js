@@ -1,6 +1,12 @@
 import Web3 from 'web3'
 import { windowLoaded } from './utils'
 
+/** 
+ * Web3 Provider API
+ * Version: 1.0.0beta.xx
+ * Will NOT work with Web3@0.20.xx
+*/
+
 export let appWeb3
 
 export const getWeb3API = async () => {

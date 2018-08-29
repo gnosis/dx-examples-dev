@@ -14,3 +14,6 @@ export const networkById = {
     4: ETHEREUM_NETWORKS.RINKEBY,
     42: ETHEREUM_NETWORKS.KOVAN,
 }
+
+export const GAS_LIMIT = 4000000
+export const GAS_PRICE = 5e9

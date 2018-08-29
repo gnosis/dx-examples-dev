@@ -61,7 +61,7 @@ async function init() {
     amount,
     index,
     userAccount,
-  ) => dx.postSellOrder(t1, t2, index, amount, { from: userAccount, gasPrice: GAS_PRICE, gas: GAS_LIMIT_TESTING })
+  ) => dx.postSellOrder(t1, t2, index, amount, { from: userAccount })
 
   postSellOrder.call = (
     { sell: { address: t1 }, buy: { address: t2 } },
@@ -75,7 +75,7 @@ async function init() {
     amount,
     index,
     userAccount,
-  ) => dx.postSellOrder.sendTransaction(t1, t2, index, amount, { from: userAccount, gasPrice: GAS_PRICE, gas: GAS_LIMIT_TESTING })
+  ) => dx.postSellOrder.sendTransaction(t1, t2, index, amount, { from: userAccount })
 
   const postBuyOrder = (
     { sell: { address: t1 }, buy: { address: t2 } },
@@ -154,7 +154,7 @@ async function init() {
     { sell: { address: t1 }, buy: { address: t2 } },
     amount,
     userAccount,
-  ) => dx.depositAndSell(t1, t2, amount, { from: userAccount, gasPrice: GAS_PRICE, gas: GAS_LIMIT_TESTING })
+  ) => dx.depositAndSell(t1, t2, amount, { from: userAccount })
 
   depositAndSell.call = (
     { sell: { address: t1 }, buy: { address: t2 } },
@@ -166,14 +166,14 @@ async function init() {
     { sell: { address: t1 }, buy: { address: t2 } },
     amount,
     userAccount,
-  ) => dx.depositAndSell.sendTransaction(t1, t2, amount, { from: userAccount, gasPrice: GAS_PRICE, gas: GAS_LIMIT_TESTING })
+  ) => dx.depositAndSell.sendTransaction(t1, t2, amount, { from: userAccount })
 
   const claimAndWithdraw = (
     { sell: { address: t1 }, buy: { address: t2 } },
     index,
     amount,
     userAccount,
-    ) => dx.claimAndWithdraw(t1, t2, userAccount, index, amount, { from: userAccount, gas: 4712388 })
+    ) => dx.claimAndWithdraw(t1, t2, userAccount, index, amount, { from: userAccount })
 
   const isTokenApproved = (tokenAddress) => dx.approvedTokens.call(tokenAddress)
 
