@@ -32,7 +32,7 @@ pair.
 (`TODO`) This example shows how you can use the DutchX contracts, for example to
  get some information from the contract and to **participate in an auction as a buyer**.
 
-# Give some feedback and help us improve this docs
+# Give some feedback and help us improve the docs
 If you follow the guide and you encounter any inconvenience, let us kwnow.
 
 Pull requests are welcomed, and any feedback can be given in the 
