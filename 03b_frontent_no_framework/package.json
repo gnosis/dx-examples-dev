@@ -1,0 +1,30 @@
+{
+  "name": "03b_frontent_no_framework",
+  "version": "1.0.0",
+  "description": "This project is an example that shows how to create a barebones Javascript frontend project that depends on the DutchX and how you can deploy the DutchX contracts in a `ganache-cli` local node.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "rpc": "ganache-cli -d --mnemonic 'candy maple cake sugar pudding cream honey rich smooth crumble sweet treat' --defaultBalanceEther '500'",
+    "deploy": "npm run setup-rpc",
+    "setup-rpc": "truffle migrate",
+    "build": "cross-env NODE_ENV=production parcel build src/index.html",
+    "start": "cross-env NODE_ENV=development parcel src/index.html"
+  },
+  "author": "Velenir (https://github.com/velenir)",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-runtime": "^6.26.0",
+    "cross-env": "^5.2.0",
+    "ganache-cli": "^6.1.8",
+    "parcel-bundler": "^1.9.7",
+    "truffle": "^4.1.14",
+    "truffle-hdwallet-provider": "0.0.6"
+  },
+  "dependencies": {
+    "@gnosis.pm/dx-contracts": "^1.0.5",
+    "truffle-contract": "^3.0.6",
+    "web3": "^0.20.7"
+  }
+}
