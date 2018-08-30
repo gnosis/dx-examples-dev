@@ -40,7 +40,13 @@ Add the first migration and it's contract:
 * [Migrations.sol](./contracts/Migrations.sol) into `contracts` dir
 * [1_initial_migration.js](./migrations/1_initial_migration.js) into `migrations` dir
 
-## Make sure we compile all the DutchX
+## Get DutchX dependencies and compiling it
+
+Add the required dependencies
+```bash
+npm install @gnosis.pm/dx-contracts --save
+```
+
 To ensure that for local development, truffle finds all DutchX contract, we can
 create a dummy contract call `CoolAppDependencies`.
 
@@ -58,20 +64,16 @@ npx truffle compile
 ````
 
 ## Add a new migration for the DutchX
-Add the required dependencies
-```bash
-npm install @gnosis.pm/dx-contracts --save
-```
 
-Then we create a migration that deploys the `DutchX` and it's dependencies, an 
-easy way would would be to create a migration that:
+For the ease of use, following criteria should be met for the migration:
 * Only executes in the `development` network. Note that `rinkeby` and `mainet` 
 contracts are already deployed.
 * Uses the contracts that are in our NPM dependencies, so we avoid repetition.
 * Uses the migration scripts that are in our NPM dependencies. **DutchX** NPM 
 module provides a simple migration source that can be referenced to ease the 
 local development.
-* So we just create a migration like 
+
+Hence, we just create a migration like 
 [2_DEV_migrate_dependencies.js](./migrations/2_DEV_migrate_dependencies.js) and 
 add it to the `migrations` dir.
 
