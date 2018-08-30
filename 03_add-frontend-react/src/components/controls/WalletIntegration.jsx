@@ -2,9 +2,9 @@ import React from 'react'
 
 import Providers from '../../api/providers'
 
-import { connect } from '../Provider'
+import { connect } from '../StateProvider'
 import { getAPI } from '../../api'
-import { getAppContracts } from '../../api/Contracts';
+import { getAppContracts } from '../../api/Contracts'
 
 class WalletIntegration extends React.Component {
   state = {
@@ -19,14 +19,16 @@ class WalletIntegration extends React.Component {
     // returns [ Provider{}, ... ]
     const providersArray = Object.values(Providers)
     // register each providerObject into state
-    return providersArray.forEach(provider => { registerProviders(providersArray) })
+    return providersArray.forEach(() => { registerProviders(providersArray) })
   }
 
-  onChange = async providerInfo => {
-    const { grabUserState, setActiveProvider } = this.props
+  onChange = async (providerInfo) => {
+    const { appLoading, grabUserState, grabDXState, setActiveProvider, getDXTokenBalance } = this.props
 
     try {
+      appLoading(true)
       this.setState({ initialising: true, error: undefined })
+
       const chosenProvider = Providers[providerInfo]
       // initialize providers and return specific Web3 instances
       const web3 = await chosenProvider.initialize()
@@ -37,67 +39,91 @@ class WalletIntegration extends React.Component {
       this.setState({ web3, activeProviderSet: true })
 
       // interface with contracts & connect entire DX API
-      await getAppContracts()
+      // grabbing eth here to show contrived example of state
+      const { eth } = await getAppContracts()
       await getAPI()
-      
-      await grabUserState(chosenProvider)
 
+      // contrived example below showing state grabbing
+      // from DutchX contract
+      await grabUserState(chosenProvider)
+      await Promise.all([
+        grabDXState(),
+        getDXTokenBalance(eth.address, this.props.account),
+      ])
+      appLoading(false)
       return this.setState({ initialising: false })
     } catch (error) {
       console.error(error)
-      return this.setState({ error, initialising: false })
+      appLoading(false)
+      return this.setState({ initialising: false, error })
     }
   }
 
-  walletSelector = () => {
-    return (
-      <div className="walletChooser">
-        <h1>Please select a wallet</h1>
-        <div className={!this.state.initialising ? 'lightBlue' : ''}>
+  walletSelector = () => (
+    <div className="walletChooser">
+      <h1>Please select a wallet</h1>
+      <div className={!this.state.initialising ? 'lightBlue' : ''}>
         {Object.keys(Providers).map((provider, i) => {
           const providerInfo = Providers[provider].providerName || provider
           return (
             <div
+              role="container"
               key={i}
               onClick={() => this.onChange(provider)}
             >
-              <h4 className="providerChoice">{`${i+1}. ${providerInfo}`}</h4>
+              <h4 className="providerChoice">{`${i + 1}. ${providerInfo}`}</h4>
             </div>
           )
         })}
-        </div>
-        {this.state.error && <h3>{this.state.error.message}</h3>}
       </div>
-    )
-  }
+      {this.state.error && <h3>{this.state.error.message}</h3>}
+    </div>
+  )
 
   render() {
-    const { initialising, activeProviderSet } = this.state,
+    const { initialising, activeProviderSet, error } = this.state,
       { activeProvider, children } = this.props
-    return (activeProvider && activeProviderSet) && !initialising ? children : this.walletSelector()
+
+    if (this.props.loading) return <h1>Loading...</h1>
+    // error occurred in async, show message
+    if (error) return <h1>An error occurred: {error}</h1>
+    // app state initialised, no longer loading
+    // aka load app
+    if ((activeProvider && activeProviderSet) && !initialising) return children
+
+    // show user wallet selector
+    return this.walletSelector()
   }
 }
 
-const mapState = ({
+const mapProps = ({
   // state properties
-  state: { 
-    providerData: { activeProvider, network }, 
-    user: { account, balance } 
+  state: {
+    PROVIDER: { activeProvider, network },
+    USER: { account, balance },
+    loading,
   },
   // dispatchers
+  appLoading,
   grabUserState,
+  grabDXState,
   registerProviders,
   setActiveProvider,
+  getDXTokenBalance,
 }) => ({
   // state properties
   activeProvider,
   network,
   account,
   balance,
+  loading,
   // dispatchers
+  appLoading,
   grabUserState,
+  grabDXState,
   registerProviders,
   setActiveProvider,
+  getDXTokenBalance,
 })
 
-export default connect(mapState)(WalletIntegration)
+export default connect(mapProps)(WalletIntegration)
