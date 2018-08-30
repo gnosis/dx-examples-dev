@@ -16,15 +16,16 @@ const defaultState = {
   DX: {
     tokens: undefined,
   },
+  loading: false,
 }
 
 const { Provider, Consumer } = React.createContext(defaultState)
 
 const setToContext = new WeakMap()
-const memoizedContextValue = ({ state, grabUserState, grabDXState, registerProviders, setActiveProvider, getDXTokenBalance }) => {
+const memoizedContextValue = ({ state, appLoading, grabUserState, grabDXState, registerProviders, setActiveProvider, getDXTokenBalance }) => {
   if (setToContext.has(state)) return setToContext.get(state)
 
-  const contextValue = { state, grabUserState, grabDXState, registerProviders, setActiveProvider, getDXTokenBalance }
+  const contextValue = { state, appLoading, grabUserState, grabDXState, registerProviders, setActiveProvider, getDXTokenBalance }
   setToContext.set(state, contextValue)
   return contextValue
 }
@@ -33,8 +34,10 @@ class AppProvider extends React.Component {
   state = {
     ...defaultState,
   }
+  // GENERIC DISPATCHERS
+  appLoading = loadingState => this.setState(({ loading: loadingState }))
 
-  // DutchX Functions
+  // DX DISPATCHERS
   getDXTokenBalance = async (tokenAddress, userAccount) => {
     const { getTokenSymbol } = await getTokensAPI()
     const { getDXTokenBalance } = await getDutchXAPI()
@@ -43,9 +46,10 @@ class AppProvider extends React.Component {
       getTokenSymbol(tokenAddress),
       getDXTokenBalance(tokenAddress, userAccount),
     ])
-    return this.setState({
+    return this.setState(prevState => ({
+      ...prevState,
       DX: {
-        ...this.state.DX,
+        ...prevState.DX,
         tokens: {
           [tokenAddress]: {
             symbol,
@@ -53,10 +57,8 @@ class AppProvider extends React.Component {
           },
         },
       },
-    })
+    }))
   }
-
-  setActiveProvider = providerName => this.setState({ PROVIDER: { activeProvider: providerName, ...this.state.PROVIDER } })
 
   grabDXState = async () => {
     const { getFRTAddress, getOWLAddress, getPriceFeedAddress } = await getDutchXAPI()
@@ -65,35 +67,64 @@ class AppProvider extends React.Component {
       getOWLAddress(),
       getPriceFeedAddress(),
     ])
-    return this.setState({
+    return this.setState(prevState => ({
+      ...prevState,
       DX: {
+        ...prevState.DX,
         tokenFRT: {
           address: frtTokenAddress,
-          ...this.state.DX.tokenFRT,
+          ...prevState.DX.tokenFRT,
         },
         tokenOWL: {
           address: owlTokenAddress,
-          ...this.state.DX.tokenOWL,
+          ...prevState.DX.tokenOWL,
         },
         priceFeed: priceFeedAddress,
-        ...this.state.DX,
       },
-    })
+    }))
   }
 
-  registerProviders = provider => this.setState({ PROVIDER: { providers: [...provider, ...this.state.PROVIDER.providers] } })
+  // PROVIDER DISPATCHERS
+  setActiveProvider = providerName =>
+    this.setState(prevState =>
+      ({
+        ...prevState,
+        PROVIDER: {
+          ...prevState.PROVIDER,
+          activeProvider: providerName,
+        },
+      }))
+  registerProviders = provider =>
+    this.setState(prevState =>
+      ({
+        ...prevState,
+        PROVIDER: {
+          providers: [...provider, ...prevState.PROVIDER.providers],
+        },
+      }))
 
+  // USER STATE DISPATCHERS
   grabUserState = async (provider) => {
     const [account, network] = await Promise.all([
       getAccount(provider),
       getNetwork(provider),
     ])
     const balance = await getBalance(provider, account)
-    return this.setState({ USER: { account, balance }, PROVIDER: { network, ...this.state.PROVIDER } })
+    return this.setState(prevState =>
+      ({
+        ...prevState,
+        USER: {
+          account,
+          balance,
+        },
+        PROVIDER: {
+          ...prevState.PROVIDER,
+          network,
+        },
+      }))
   }
 
   render() {
-    const { loading } = this.state
     return (
       <Provider value={memoizedContextValue(this)}>
         {/*
@@ -104,7 +135,7 @@ class AppProvider extends React.Component {
             </pre>
           )
          */}
-        {loading ? null : this.props.children}
+        {this.props.children}
       </Provider>
     )
   }
