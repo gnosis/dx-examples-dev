@@ -1,16 +1,16 @@
 import React from 'react'
 import { hot } from 'react-hot-loader'
 
-import Provider from './components/Provider'
+import StateProvider from './components/StateProvider'
 import WalletIntegration from './components/controls/WalletIntegration'
 import Home from './components/display/Home'
 
 const App = () => (
-  <Provider>
+  <StateProvider>
     <WalletIntegration>
       <Home />
     </WalletIntegration>
-  </Provider>
+  </StateProvider>
 )
 
 export default hot(module)(App)
