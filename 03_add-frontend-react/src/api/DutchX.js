@@ -1,6 +1,6 @@
 import { getAppContracts } from './Contracts'
 
-export let dutchXAPI
+let dutchXAPI
 
 export const getDutchXAPI = async () => {
   if (dutchXAPI) return dutchXAPI
@@ -11,6 +11,10 @@ export const getDutchXAPI = async () => {
 
 async function init() {
   const { dx } = await getAppContracts()
+
+  const getFRTAddress = () => dx.frtToken.call()
+  const getOWLAddress = () => dx.owlToken.call()
+  const getPriceFeedAddress = () => dx.ethUSDOracle.call()
 
   const getLatestAuctionIndex = ({ sell: { address: t1 }, buy: { address: t2 } }) =>
     dx.getAuctionIndex.call(t1, t2)
@@ -48,7 +52,8 @@ async function init() {
   const getBuyerBalances = (
     { sell: { address: t1 }, buy: { address: t2 } },
     index,
-    userAccount) => dx.buyerBalances.call(t1, t2, index, userAccount)
+    userAccount,
+  ) => dx.buyerBalances.call(t1, t2, index, userAccount)
 
   const getClaimedAmounts = (
     { sell: { address: t1 }, buy: { address: t2 } },
@@ -113,7 +118,7 @@ async function init() {
     buyTokenAddresses,
     indices,
     account,
-    { from },
+    { from: account },
   )
 
   claimTokensFromSeveralAuctionsAsSeller.sendTransaction = (
@@ -126,7 +131,7 @@ async function init() {
     buyTokenAddresses,
     indices,
     account,
-    { from },
+    { from: account },
   )
 
   const claimBuyerFunds = (
@@ -173,16 +178,16 @@ async function init() {
     index,
     amount,
     userAccount,
-    ) => dx.claimAndWithdraw(t1, t2, userAccount, index, amount, { from: userAccount })
+  ) => dx.claimAndWithdraw(t1, t2, userAccount, index, amount, { from: userAccount })
 
-  const isTokenApproved = (tokenAddress) => dx.approvedTokens.call(tokenAddress)
+  const isTokenApproved = tokenAddress => dx.approvedTokens.call(tokenAddress)
 
-  const getApprovedAddressesOfList = (tokenAddresses) => dx.getApprovedAddressesOfList.call(tokenAddresses)
+  const getApprovedAddressesOfList = tokenAddresses => dx.getApprovedAddressesOfList.call(tokenAddresses)
 
   const getDXTokenBalance = (tokenAddress, userAccount) =>
     dx.balances.call(tokenAddress, userAccount)
 
-  const getRunningTokenPairs = (tokenList) => dx.getRunningTokenPairs.call(tokenList)
+  const getRunningTokenPairs = tokenList => dx.getRunningTokenPairs.call(tokenList)
 
   const getSellerBalancesOfCurrentAuctions = (
     sellTokenArr,
@@ -196,7 +201,7 @@ async function init() {
     lastNAuctions = 0,
   ) => dx.getIndicesWithClaimableTokensForSellers.call(sellToken, buyToken, userAccount, lastNAuctions)
 
-  const getFeeRatio = (userAccount) => dx.getFeeRatio.call(userAccount)
+  const getFeeRatio = userAccount => dx.getFeeRatio.call(userAccount)
 
   const event = (
     eventName,
@@ -204,11 +209,11 @@ async function init() {
     filter,
     cb,
   ) => {
-    const event = dx[eventName]
+    const dxEvent = dx[eventName]
 
-    if (typeof event !== 'function') throw new Error(`No event with ${eventName} name found on DutchExchange contract`)
+    if (typeof dxEvent !== 'function') throw new Error(`No event with ${eventName} name found on DutchExchange contract`)
 
-    return event(valueFilter, filter, cb)
+    return dxEvent(valueFilter, filter, cb)
   }
 
   const allEvents = dx.allEvents.bind(dx)
@@ -217,6 +222,9 @@ async function init() {
     get address() {
       return dx.address
     },
+    getFRTAddress,
+    getOWLAddress,
+    getPriceFeedAddress,
     isTokenApproved,
     getApprovedAddressesOfList,
     getDXTokenBalance,

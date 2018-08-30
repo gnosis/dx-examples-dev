@@ -1,12 +1,10 @@
-import localForage from 'localforage'
-
 // API
 import { getTokensAPI } from './Tokens'
 import { getWeb3API } from './ProviderWeb3'
 import { getDutchXAPI } from './DutchX'
 
 // API singleton
-export let appAPI
+let appAPI
 
 // API initialiser
 export const getAPI = async () => {
@@ -167,27 +165,16 @@ export const getState = async ({ account, timestamp: time } = {}) => {
   const statePromises = Promise.all([
     time || getBlockTime(),
     getCurrentNetwork(),
-    getTokenBalance('gno', true),
-    getTokenBalance('owl', true),
-    localForage.getItem('disclaimerAccepted'),
   ])
 
   account = await checkIfAccount(account)
-  const lockedGNOAmount = await getLockedGNOAmount(account, true)
 
-  const [timestamp, network, gnoBalance, owlBalance, disclaimerAccepted] = await statePromises
+  const [timestamp, network] = await statePromises
 
   const refreshedState = {
     account,
     timestamp,
     network,
-    balance: {
-      GNO: gnoBalance,
-      OWL: owlBalance,
-    },
-    settings: {
-      disclaimerAccepted,
-    },
   }
 
   console.info('Refreshed STATE = ', refreshedState)
@@ -201,7 +188,7 @@ async function init() {
     getTokensAPI(),
     getDutchXAPI(),
   ])
-  
-  console.log('​API init -> ', { Web3, Tokens, DutchX });
+
+  console.log('​API init -> ', { Web3, Tokens, DutchX })
   return { Web3, Tokens, DutchX }
 }
