@@ -56,15 +56,7 @@
           ]
         }
       ],
-      "no-console": [
-        "warn",
-        {
-          "allow": [
-            "warn",
-            "error"
-          ]
-        }
-      ],
+      "no-console": 0,
       "class-methods-use-this": 0,
       "one-var": 0,
       "one-var-declaration-per-line": 0,
@@ -73,16 +65,10 @@
       "no-multi-assign": 0,
       "object-curly-newline": 0,
       "no-param-reassign": 0,
-      "import/no-extraneous-dependencies": [
-        "error",
-        {
-          "devDependencies": true,
-          "optionalDependencies": false,
-          "peerDependencies": false
-        }
-      ],
+      "import/no-extraneous-dependencies": 0,
       "import/no-dynamic-require": 0,
       "global-require": 0,
+      "import/prefer-default-export": 0,
       "no-mixed-operators": [
         "error",
         {
