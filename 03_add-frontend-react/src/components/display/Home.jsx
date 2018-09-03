@@ -29,7 +29,9 @@ const Home = ({ account, balance: userBalance, dx, network, tokens, tokenFRT, to
     {tokenOWL && <h3>OWL Token Address: <a target="_blank" rel="noopener noreferrer" href={`https://${network === 'RINKEBY' ? 'rinkeby.' : ''}etherscan.io/token/${tokenOWL.address}`}>{tokenOWL.address}</a></h3>}
     {priceFeed && <h3>Current Price Feed Address: <a target="_blank" rel="noopener noreferrer" href={`https://${network === 'RINKEBY' ? 'rinkeby.' : ''}etherscan.io/address/${priceFeed}`}>{priceFeed}</a></h3>}
 
-    <h3>DutchX Getter API</h3>
+    <br /><br />
+
+    <h1>DutchX Getter API</h1>
     <div id="apiContainer">
       {Object.values(dx.abi).map(({ name, inputs, stateMutability, type }, i) => {
         if (stateMutability === 'view' && type === 'function') {
@@ -44,12 +46,15 @@ const Home = ({ account, balance: userBalance, dx, network, tokens, tokenFRT, to
                 const elementToWrite = e.target.childNodes[2]
                 e.preventDefault()
 
+                // set loading status in HTML
+                elementToWrite.innerText = 'LOADING...'
+
                 let outputText
                 let res
                 try {
                   const preArgs = parseArrays(...new FormData(e.target).values())
-                  const args = preArgs[0].split(',')
-                  if (args.includes('')) {
+                  const args = preArgs.length && preArgs[0].split(',')
+                  if (!args) {
                     res = await dx[name]()
                     outputText = res
                   } else {
@@ -63,10 +68,10 @@ const Home = ({ account, balance: userBalance, dx, network, tokens, tokenFRT, to
                 elementToWrite.innerText = `>> ${outputText}`
               }}
             >
-              <h4>{name}</h4>
-              <input type="text" placeholder={funcInputs} name={name} />
-              <h5 />
-              <button> Submit </button>
+              <span><h4>{name}</h4></span>
+              {funcInputs ? <input type="text" placeholder={funcInputs} name={name} /> : <span />}
+              <h4 />
+              <button> Check value </button>
             </form>
           )
         }

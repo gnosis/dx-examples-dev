@@ -32,6 +32,13 @@ input[type="text"] {
     flex-flow: column;
 }
 
-#apiContainer h5 {
+#apiContainer form > h4 {
     background-color: lightblue;
+    margin-left: 10px;
+}
+
+#apiContainer button {
+    margin: 10px auto;
+    padding: 5px;
+    width: 50%;
 }
