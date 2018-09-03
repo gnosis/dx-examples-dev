@@ -1,5 +1,19 @@
 body {
-    background: rgb(227, 255, 192);
+    background: rgb(209, 209, 209);
+}
+
+form {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 20px 0;
+    max-width: 500px;
+    background: #b7b6b5;
+}
+
+input[type="text"] {
+    min-width: 250px;
 }
 
 .providerChoice {
@@ -11,4 +25,13 @@ body {
 
 .providerChoice:hover {
     background: white;
+}
+
+#apiContainer {
+    display: flex;
+    flex-flow: column;
+}
+
+#apiContainer h5 {
+    background-color: lightblue;
 }
