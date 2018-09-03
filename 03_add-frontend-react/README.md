@@ -37,6 +37,10 @@ npm run migrate
 npm start
 ```
 
+## Troubleshooting
+Some issues that may arise:
+1. `node-gyp permission error` or something similar - solution was found by setting npm config for unsafe-perm to true: `npm config set unsafe-perm true`
+
 ## Next steps
 Congratulations! you now have a working React frontend-truffle project that deploys all the DutchX contracts as 
 part of it's first migration and can talk to them - doooope.
