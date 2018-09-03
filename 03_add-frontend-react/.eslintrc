@@ -21,11 +21,12 @@
       ]
     },
     "rules": {
+      "jsx-a11y/heading-has-content": 0,
       "jsx-a11y/aria-role": 0,
       "jsx-a11y/no-static-element-interactions": 0,
-      "react/no-array-index-key": 0,
       "jsx-a11y/label-has-for": 0,
       "jsx-a11y/click-events-have-key-events": 0,
+      "linebreak-style": 0,
       "import/no-unresolved": [
         2,
         {
@@ -38,6 +39,7 @@
       "import/default": 2,
       "import/namespace": 2,
       "react/sort-comp": 0,
+      "react/no-array-index-key": 0,
       "react/jsx-filename-extension": [
         1,
         {
@@ -48,6 +50,8 @@
         }
       ],
       "react/prop-types": 0,
+      "react/no-unused-state": 0,
+      "react/no-did-mount-set-state": 1,
       "react/forbid-prop-types": [
         1,
         {
@@ -105,8 +109,6 @@
           "allowSamePrecedence": true
         }
       ],
-      "react/no-unused-state": 0,
-      "react/no-did-mount-set-state": 0,
       "no-use-before-define": [
         "error",
         "nofunc"
