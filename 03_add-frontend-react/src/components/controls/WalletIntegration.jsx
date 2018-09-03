@@ -14,7 +14,7 @@ class WalletIntegration extends React.Component {
     web3: undefined,
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { registerProviders } = this.props
     // returns [ Provider{}, ... ]
     const providersArray = Object.values(Providers)
@@ -40,7 +40,12 @@ class WalletIntegration extends React.Component {
 
       // interface with contracts & connect entire DX API
       // grabbing eth here to show contrived example of state
-      const { eth } = await getAppContracts()
+      const contracts = await getAppContracts()
+
+      // registers/saves contracts to StateProvider
+      this.saveContractToState(contracts)
+
+      // INIT main API
       await getAPI()
 
       // contrived example below showing state grabbing
@@ -48,7 +53,7 @@ class WalletIntegration extends React.Component {
       await grabUserState(chosenProvider)
       await Promise.all([
         grabDXState(),
-        getDXTokenBalance(eth.address, this.props.account),
+        getDXTokenBalance(contracts.eth.address, this.props.account),
       ])
       appLoading(false)
       return this.setState({ initialising: false })
@@ -58,6 +63,8 @@ class WalletIntegration extends React.Component {
       return this.setState({ initialising: false, error })
     }
   }
+
+  saveContractToState = contracts => Object.keys(contracts).forEach(name => this.props.saveContract({ name, contract: contracts[name] }))
 
   walletSelector = () => (
     <div className="walletChooser">
@@ -110,6 +117,7 @@ const mapProps = ({
   registerProviders,
   setActiveProvider,
   getDXTokenBalance,
+  saveContract,
 }) => ({
   // state properties
   activeProvider,
@@ -124,6 +132,7 @@ const mapProps = ({
   registerProviders,
   setActiveProvider,
   getDXTokenBalance,
+  saveContract,
 })
 
 export default connect(mapProps)(WalletIntegration)

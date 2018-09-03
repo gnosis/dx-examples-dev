@@ -16,16 +16,27 @@ const defaultState = {
   DX: {
     tokens: undefined,
   },
+  CONTRACTS: {},
   loading: false,
 }
 
 const { Provider, Consumer } = React.createContext(defaultState)
 
 const setToContext = new WeakMap()
-const memoizedContextValue = ({ state, appLoading, grabUserState, grabDXState, registerProviders, setActiveProvider, getDXTokenBalance }) => {
+const memoizedContextValue = ({
+  state,
+  // Dispatchers
+  appLoading,
+  getDXTokenBalance,
+  grabDXState,
+  grabUserState,
+  registerProviders,
+  saveContract,
+  setActiveProvider,
+}) => {
   if (setToContext.has(state)) return setToContext.get(state)
 
-  const contextValue = { state, appLoading, grabUserState, grabDXState, registerProviders, setActiveProvider, getDXTokenBalance }
+  const contextValue = { state, appLoading, grabUserState, grabDXState, registerProviders, setActiveProvider, getDXTokenBalance, saveContract }
   setToContext.set(state, contextValue)
   return contextValue
 }
@@ -36,6 +47,17 @@ class AppProvider extends React.Component {
   }
   // GENERIC DISPATCHERS
   appLoading = loadingState => this.setState(({ loading: loadingState }))
+
+  // CONTRACT DISPATCHERS
+  saveContract = ({ name, contract }) =>
+    this.setState(prevState => ({
+      ...prevState,
+      CONTRACTS: {
+        ...prevState.CONTRACTS,
+        [name]: contract,
+      },
+    }))
+
 
   // DX DISPATCHERS
   getDXTokenBalance = async (tokenAddress, userAccount) => {
