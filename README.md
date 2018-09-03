@@ -22,15 +22,23 @@ The complete list of examples is:
   * This example shows how to create your own contract and migrations that makes 
     use the DutchX.
   * In this example we will create a `Safe` contract to deposit fund. We will
-    use the DutchX to help us estimate the price in `USD` for any token in our 
-`Safe`.
-* [Example 03: List your own token pair](https://github.com/gnosis/dx-examples-dev/tree/master/03_list_your_own_toke_pair):
-(`TODO`) This example shows how to add new migrations to deploy your own 
+    use the DutchX to help us estimate the price in `USD` for any token in our `Safe`.
+* [Example 03a: React Frontend + DX Contracts](https://github.com/gnosis/dx-examples-dev/tree/master/03_add-frontend-react): 
+  * This example runs you through how to create your own [React v16.xx](https://reactjs.org/blog/2017/09/26/react-v16.0.html) JS frontend app that interfaces with the DutchX.
+  * We will migrate all contracts, init APIs and display it in our own React JS app
+* [Example 03b: Barebones JS Frontend + DX Contracts](https://github.com/gnosis/dx-examples-dev/tree/master/03b_frontent_no_framework): 
+  * This example runs you through how to create your own frameworkless, JS frontend app that interfaces with the DutchX.
+  * We will migrate all contracts, init APIs and display it in our own barebones JS app 
+
+## TODO
+Coming later:    
+* [Example 04: List your own token pair](https://github.com/gnosis/dx-examples-dev/tree/master/03_list_your_own_toke_pair):
+  * This example shows how to add new migrations to deploy your own 
 contracts, and how to **setup the DutchX**. For example for listing your own token 
 pair.
-* [Example 04: Invoke the DutchX logic](https://github.com/gnosis/dx-examples-dev/tree/master/04_invoke-the-dutchx-logic):
-(`TODO`) This example shows how you can use the DutchX contracts, for example to
- get some information from the contract and to **participate in an auction as a buyer**.
+* [Example 05: Invoke the DutchX logic](https://github.com/gnosis/dx-examples-dev/tree/master/04_invoke-the-dutchx-logic):
+  * This example shows how you can use the DutchX contracts, for example to
+  * get some information from the contract and to **participate in an auction as a buyer**.
 
 # Give some feedback and help us improve the docs
 If you follow the guide and you encounter any inconvenience, let us kwnow.
