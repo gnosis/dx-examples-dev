@@ -2,10 +2,29 @@ import React from 'react'
 import { connect } from '../StateProvider'
 
 function parseArrays(...args) {
-  return args.map((arg) => {
+  console.log('TCL: parseArrays -> ...args', ...args)
+  const toReturn = args.map((arg) => {
     if (/^\s*\[.+\]\s*$/.test(arg)) return JSON.parse(arg)
     return arg
   })
+  console.log('toReturn ', toReturn)
+  return toReturn
+}
+
+function checkArgs(argsToCheck) {
+  // console.log('TEST', argsToCheck[0].split(','))
+  if (!argsToCheck) return
+
+  // check if param passed in is array
+  if (Array.isArray(argsToCheck[0])) {
+    return argsToCheck[0]
+  }
+
+  if (!Array.isArray(argsToCheck) && typeof argsToCheck === 'string') {
+    return argsToCheck.split(',')
+  }
+
+  return checkArgs(argsToCheck[0])
 }
 
 const Home = ({ account, balance: userBalance, dx, network, tokens, tokenFRT, tokenOWL, priceFeed }) => (
@@ -32,6 +51,15 @@ const Home = ({ account, balance: userBalance, dx, network, tokens, tokenFRT, to
     <br /><br />
 
     <h1>DutchX Getter API</h1>
+    <ul>
+      <h3>Requirements</h3>
+      <li>Please wrap all parameters in array brackets as such: <strong><code>[ ...arguments ]</code></strong></li>
+      <li>
+        <strong>**IMPORTANT**</strong> Concerning above, this is NOT standard procedure for calling DX functions in the FE,
+        the API is built this way but normal DX functions using the built in API should be called normally.
+      </li>
+      <li>Refer to <strong><code>DutchExchange.sol</code></strong> contract for params</li>
+    </ul>
     <div id="apiContainer">
       {Object.values(dx.abi).map(({ name, inputs, stateMutability, type }, i) => {
         if (stateMutability === 'view' && type === 'function') {
@@ -53,7 +81,9 @@ const Home = ({ account, balance: userBalance, dx, network, tokens, tokenFRT, to
                 let res
                 try {
                   const preArgs = parseArrays(...new FormData(e.target).values())
-                  const args = preArgs.length && preArgs[0].split(',')
+
+                  const args = checkArgs(preArgs)
+
                   if (!args) {
                     res = await dx[name]()
                     outputText = res
@@ -63,7 +93,9 @@ const Home = ({ account, balance: userBalance, dx, network, tokens, tokenFRT, to
                   }
                 } catch (error) {
                   console.error(error)
-                  outputText = `Error: ${error.message}`
+                  outputText = `Error: ${error.message}.
+
+                  Did you maybe forget to wrap arguments in Array brackets [ ...args ]?`
                 }
                 elementToWrite.innerText = `>> ${outputText}`
               }}
