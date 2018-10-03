@@ -10,7 +10,7 @@ that depend on the DutchX and how you can deploy the DutchX contracts in a
 ## High level recommendations
 1. Install and familiarise yourself with [MetaMask](https://metamask.io)
 2. For React development, [React Dev-Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) is highly recommended
-3. Testing Solidity contract methods can be tricky without the proper environment. Please check out and add the awesome [DutchX CLI](https://github.com/gnosis/dx-examples-cli) to your arsenal. `truffle console` is also very handy!
+3. Testing Solidity contract methods can be tricky without the proper environment. Please check out and add the awesome [DutchX CLI](https://github.com/gnosis/dx-cli) to your arsenal. `truffle console` is also very handy!
 
 ----------------------------------
 
