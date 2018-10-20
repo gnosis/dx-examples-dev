@@ -28,32 +28,13 @@ Also, it would be good if before you start, you get some Rinkeby Ether:
 
 
 ## 1. Undersanding the deposit of WETH (or any other ERC20 token)
-In order to deposit something in the DutchX, it must be an ERC20 token.
+To understand this guide, it's  important to get familiar with 3 concepts first:
+* Wrap ether (into WETH - Wrapped Ether)
+* Set an allowance of any token for the DutchX
+* Deposit in the DutchX
 
-Ether is not an ERC20 token, this is why we need to wrap it first, this means 
-that we need to **send some ether to the `deposit` function in a token contract called WETH (Wrapped Ether))**:
-* WETH contract: https://rinkeby.etherscan.io/address/0xc778417e063141139fce010982780140aa0cd5ab#code
-* Info about WETH: https://weth.io
-* More info about WETH: https://blog.0xproject.com/canonical-weth-a9aa7d0279dd
-
-Other important thing we should know, is that the `deposit` function in DutchX, 
-will call the ERC20 token contract `transferFrom` function to withdraw the 
-amount for the user:
-* This `transferFrom` will fail if the user don't set an allowance of at least
-  the deposited amount for the DutchX proxy address (entry point for DutchX)
-* So you first need to invoke the `approve` function
-* This step is **mandatory** for WETH and for any other ERC20 token.
-
-This sequence diagram will show you the 3 important operations we will do in 
-this example:
-1. **Wrap 0.1 WETH**: Remember Ether is not ERC20 compatible, so we need to do this 
-  step (`deposit` function on WETH contract).
-2. **Set allowance, so DutchX proxy can transfer 0.1 WETH**: Otherwise the
-  deposit will fail, because the DutchX wouln't be entitled to do the operation.
-3. **Deposit 0.1 ETH in DutchX proxy**: If we did the two prior steps, the user
-  will have 0.1 WETH more in it's balance.
-
-![Sequence for deposit](./docs/sequence-deposit.png "Sequence for deposit")
+This concepts are explained in:
+* https://dutchx.readthedocs.io/en/latest/dev-deposit.html
 
 ## 2. Create a basic web
 For this basic example, we will use `reate-react-app` because it creates a 
