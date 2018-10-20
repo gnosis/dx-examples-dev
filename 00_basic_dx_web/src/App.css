@@ -1,0 +1,46 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.message {
+  text-align: left;
+  padding: 0.5em;
+  margin: 1em 0;
+  background-color:#92b19e;
+  color: white;
+  border-radius: 0.3em;
+}
+
+.message li strong {
+  color: #404040;
+}
+
+.message .times{
+  float: right;
+  display: block;
+  cursor: pointer;
+}
+
+input, button {
+  padding: 1em 0;
+  width: 25em;
+}
+
+label, input, button {
+  margin: 0.5em;
+}

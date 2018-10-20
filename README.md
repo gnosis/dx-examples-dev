@@ -30,16 +30,6 @@ The complete list of examples is:
   * This example runs you through how to create your own frameworkless, JS frontend app that interfaces with the DutchX.
   * We will migrate all contracts, init APIs and display it in our own barebones JS app 
 
-## TODO
-Coming later:    
-* [Example 04: List your own token pair](https://github.com/gnosis/dx-examples-dev/tree/master/03_list_your_own_toke_pair):
-  * This example shows how to add new migrations to deploy your own 
-contracts, and how to **setup the DutchX**. For example for listing your own token 
-pair.
-* [Example 05: Invoke the DutchX logic](https://github.com/gnosis/dx-examples-dev/tree/master/04_invoke-the-dutchx-logic):
-  * This example shows how you can use the DutchX contracts, for example to
-  * get some information from the contract and to **participate in an auction as a buyer**.
-
 # Give some feedback and help us improve the docs
 If you follow the guide and you encounter any inconvenience, let us kwnow.
 
