@@ -1,7 +1,12 @@
-# Example 03: Build a React frontend to interface the DutchX contracts
+# React Web - API
 This project is an example that shows how to create a React frontend project 
 that depend on the DutchX and how you can deploy the DutchX contracts in a 
 `ganache-cli` local node.
+
+It has all the boilerplate code to get up to speed on building something
+amazing on the DutchX. 
+
+It provides some basic components, like a wrapper for all the contracts functions.
 
 > This example is part of the guide http://dutchx.readthedocs.io/en/latest/
 >

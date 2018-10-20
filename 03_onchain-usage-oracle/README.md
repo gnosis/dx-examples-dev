@@ -1,11 +1,9 @@
-# Example 02: Use DutchX as an Oracle
+# Onchain usage: Oracle
 This example shows how to create your own contract and migrations that makes 
 use the DutchX.
 
-In this example we will create a `Safe` contract to deposit fund. We will
-use the DutchX to help us estimate the price in `USD` for any token in our 
-`Safe`.
-
+This example creates a `Safe` contract to deposit fund. We will use the DutchX 
+to help us estimate the price in `USD` for any token in our `Safe`.
 
 > This example is part of the guide http://dutchx.readthedocs.io/en/latest/
 >
@@ -357,4 +355,16 @@ The DutchX has information about all the closing prices for all the auctions,
 also there are informations about trading volumes, closing dates, that could be
 used to make a more sofisticated estimation.
 
-Now you can continue with [Example 03: List your own token pair](https://github.com/gnosis/dx-examples-dev/tree/master/03_list_your_own_toke_pair): TODO:
+Another interesting next step could be to check what other functinality could 
+be interesting to use in your contracts 
+([Checkout the contract](https://github.com/gnosis/dx-contracts/blob/master/contracts/DutchExchange.sol#L351)):
+* i.e. Create a contract that submit sell orders and allow users to echange tokens
+  onchain
+
+Other interesting guides are:
+* [Example 04: React Web - Boilerplate and API ](https://github.com/gnosis/dx-examples-dev/tree/master/04_react-web-api): 
+  * This example runs you through how to create your own [React v16.xx](https://reactjs.org/blog/2017/09/26/react-v16.0.html) JS frontend app that interfaces with the DutchX.
+  * We will migrate all contracts, init APIs and display it in our own React JS app
+* [Example 05: Vanilla JS Web - Boilerplate and API](https://github.com/gnosis/dx-examples-dev/tree/master/05_vanilla-web-api): 
+  * This example runs you through how to create your own frameworkless, JS frontend app that interfaces with the DutchX.
+  * We will migrate all contracts, init APIs and display it in our own barebones JS app 

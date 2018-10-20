@@ -3,6 +3,11 @@ This project is an example that shows how to create a simple JS frontend project
 that depends on the DutchX and how you can deploy the DutchX contracts in a 
 `ganache-cli` local node.
 
+It has all the boilerplate code to get up to speed on building something
+amazing on the DutchX. 
+
+It provides some basic components, like a wrapper for all the contracts functions.
+
 > This example is part of the guide http://dutchx.readthedocs.io/en/latest/
 >
 > You can find other examples in the [Build on top of DutchX project](https://github.com/gnosis/dx-examples-dev)
@@ -52,5 +57,8 @@ Congratulations! you now have a working vanilla JS frontend-truffle project that
 part of it's first migration and can talk to them - doooope.
 
 That's it for now! Please check back in every now and again and check for updates :) Thanks so much for stopping by and giving all this a go!
+
+* Read the docs: https://dutchx.readthedocs.io/en/latest
+* See you in the Gitter comunity! https://gitter.im/gnosis/DutchX
 
 Happy buidling

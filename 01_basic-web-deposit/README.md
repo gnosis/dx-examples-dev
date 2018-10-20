@@ -1,4 +1,4 @@
-# Basic DutchX Web
+# Basic DutchX Web - Deposit WETH
 We will make a small app that deposits `WETH` (Wrapped Ether) into the DutchX.
 
 The app will be something like:
@@ -454,3 +454,19 @@ Check out the deposit function of the DutchX:
 We update the deposit function to:
 ```jsx
 ```
+
+
+## Next steps
+Congratulations! Now you've built a nice basic web to wrap ether, set the 
+allowances and deposit tokens into the DutchX.
+
+Although this way of using the contracts works for many projects, others prefer
+to work using a local node like `ganache-cli` to speed up the development.
+
+Also, for medium size projects, you'll find your self doing things that are 
+**much easier using truffle** (test, migrations, interaction, sharing contracts,
+etc...)
+
+Next step will show you how to create a project from scratch that depends on 
+the DutchX NPM Package and migrate all the contracts to a local ganache.
+* [Example 02: Truffle migrate](https://github.com/gnosis/dx-examples-dev/tree/master/02_truffle-migrate): 

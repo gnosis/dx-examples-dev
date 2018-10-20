@@ -1,11 +1,28 @@
-# Example 01: Build on top of the DX
+# Truffle Migrate
 This project is an example that shows how to create a new project from scratch 
 that depends on DutchX and how you can deploy the DutchX contracts in a 
 `ganache-cli` local node.
 
+This project is interesting for allowing to deploy easily the contracts in local,
+so we don't depend on testnets like Rinkeby and we can speed up the development.
+
+Also truffle has many other advantages that makes easier the development, so it 
+should be consider for medium size project.
+
+> For more info on truffle see:
+> * https://truffleframework.com
+
+
 > This example is part of the guide http://dutchx.readthedocs.io/en/latest/
 >
 > You can find other examples in the [Build on top of DutchX project](https://github.com/gnosis/dx-examples-dev)
+
+
+# Have you done the first example?
+Maybe you should consider doing the 
+[basic web example first](https://github.com/gnosis/dx-examples-dev/tree/master/01_basic-web-deposit).
+
+That example doesn't use truffle, and it shows the basics for the DutchX usage.
 
 ## Create a basic truffle contract
 Create your `my-cool-app` project:
@@ -94,7 +111,7 @@ npx truffle migrate
 Congratulations! you now have a truffle project that deploys all the DutchX contracts as 
 part of it's first migration.
 
-Now you can continue with [Example 02: Use DutchX as an Oracle](https://github.com/gnosis/dx-examples-dev/tree/master/03_onchain-usage-oracle): 
+Now you can continue with [Example 03: Use DutchX as an Oracle](https://github.com/gnosis/dx-examples-dev/tree/master/03_onchain-usage-oracle): 
 * This example shows how to create your own contract and migrations that makes 
 use of the DutchX.
 * In this example we will create a `Safe` contract to deposit fund. We will
