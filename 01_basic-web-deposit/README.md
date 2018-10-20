@@ -463,7 +463,7 @@ allowances and deposit tokens into the DutchX.
 Although this way of using the contracts works for many projects, others prefer
 to work using a local node like `ganache-cli` to speed up the development.
 
-Also, for medium size projects, you'll find your self doing things that are 
+Also, for medium size projects, you'll find yourself doing things that are 
 **much easier using truffle** (test, migrations, interaction, sharing contracts,
 etc...)
 

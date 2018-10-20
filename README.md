@@ -26,7 +26,7 @@ The complete list of examples is:
 * [Example 02: Truffle Migrate](https://github.com/gnosis/dx-examples-dev/tree/master/02_truffle-migrate):
   * Shows how to create a new project from scratch that depends on DutchX and 
     how you can **deploy the contracts** in a `ganache-cli` local node.
-* [Example 03: Onchain usage - Use it as an oracle](https://github.com/gnosis/dx-examples-dev/tree/master/03_onchain-usage-oracle): 
+* [Example 03: Onchain integration - Use it as an oracle](https://github.com/gnosis/dx-examples-dev/tree/master/03_onchain-integration-oracle): 
   * This example shows how to create your own contract and migrations that makes 
     use the DutchX.
   * This example creates a `Safe` contract to deposit funds. It uses the DutchX

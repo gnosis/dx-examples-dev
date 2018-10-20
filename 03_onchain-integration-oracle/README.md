@@ -1,4 +1,4 @@
-# Onchain usage: Oracle
+# Onchain integration: Oracle
 This example shows how to create your own contract and migrations that makes 
 use the DutchX.
 
