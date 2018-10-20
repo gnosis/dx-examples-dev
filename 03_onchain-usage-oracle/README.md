@@ -13,7 +13,7 @@ use the DutchX to help us estimate the price in `USD` for any token in our
 
 # First things first
 If you haven't done so, you have to complete firts the 
-[Example 01: Build on top of the DX](https://github.com/gnosis/dx-examples-dev/tree/master/01_build-of-top-of-dx).
+[Example 01: Build on top of the DX](https://github.com/gnosis/dx-examples-dev/tree/master/02_truffle-migrate).
 
 This second example starts from the `my-cool-app` code generated after 
 completing the first example.

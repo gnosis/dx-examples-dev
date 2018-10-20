@@ -1,5 +1,5 @@
 {
-  "name": "02_use-dx-as-an-oracle",
+  "name": "02_truffle-migrate",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

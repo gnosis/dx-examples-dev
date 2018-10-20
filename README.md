@@ -12,21 +12,30 @@ All the guides, and reference documentation can be found in:
 ## Start from the begining
 So the examples are part of a guide and you are suppouse to do them in order.
 
-So the first one should be [Example 01: Build on top of the DX](https://github.com/gnosis/dx-examples-dev/tree/master/01_build-of-top-of-dx)
+So the first one should be [Example 01: Build on top of the DX](https://github.com/gnosis/dx-examples-dev/tree/master/02_truffle-migrate)
 
 The complete list of examples is:
-* [Example 01: Build on top of the DX](https://github.com/gnosis/dx-examples-dev/tree/master/01_build-of-top-of-dx):
+* [Example 01: Basic Web - Deposit](https://github.com/gnosis/dx-examples-dev/tree/master/01_basic-web-deposit):
+  * This example shows were to find the contracts and how to integrate it in a
+    basic app.
+  * It also shows how the desposit works. This operation is very important, 
+    because it allowes users to have balance in the DutchX, so you can submit
+    sell/buy orders or add token pairs.
+  * The example is a basic React web app with an input and some buttons, that
+    allows the user to deposit tokens into the DutchX.
+* [Example 02: Truffle Migrate](https://github.com/gnosis/dx-examples-dev/tree/master/02_truffle-migrate):
   * Shows how to create a new project from scratch that depends on DutchX and 
     how you can **deploy the contracts** in a `ganache-cli` local node.
-* [Example 02: Use DutchX as an Oracle](https://github.com/gnosis/dx-examples-dev/tree/master/02_use-dx-as-an-oracle): 
+* [Example 03: Onchain usage - Use it as an oracle](https://github.com/gnosis/dx-examples-dev/tree/master/03_onchain-usage-oracle): 
   * This example shows how to create your own contract and migrations that makes 
     use the DutchX.
-  * In this example we will create a `Safe` contract to deposit fund. We will
-    use the DutchX to help us estimate the price in `USD` for any token in our `Safe`.
-* [Example 03a: React Frontend + DX Contracts](https://github.com/gnosis/dx-examples-dev/tree/master/03_add-frontend-react): 
+  * This example creates a `Safe` contract to deposit funds. It uses the DutchX
+    to get an estimate of the price in `USD` for any token in the `Safe`
+    contract.
+* [Example 04: React Web - Boilerplate and API ](https://github.com/gnosis/dx-examples-dev/tree/master/04_react-web-api): 
   * This example runs you through how to create your own [React v16.xx](https://reactjs.org/blog/2017/09/26/react-v16.0.html) JS frontend app that interfaces with the DutchX.
   * We will migrate all contracts, init APIs and display it in our own React JS app
-* [Example 03b: Barebones JS Frontend + DX Contracts](https://github.com/gnosis/dx-examples-dev/tree/master/03b_frontent_no_framework): 
+* [Example 05: Vanilla JS Web - Boilerplate and API](https://github.com/gnosis/dx-examples-dev/tree/master/05_vanilla-web-api): 
   * This example runs you through how to create your own frameworkless, JS frontend app that interfaces with the DutchX.
   * We will migrate all contracts, init APIs and display it in our own barebones JS app 
 

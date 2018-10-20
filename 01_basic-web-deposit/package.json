@@ -1,5 +1,5 @@
 {
-  "name": "00_basic_dx_web",
+  "name": "01_basic-web-deposit",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

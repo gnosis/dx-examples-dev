@@ -20,7 +20,7 @@ First you'll need to grab the project!
 mkdir dx-dapp-project && cd dx-dapp-project
 git clone https://github.com/gnosis/dx-examples-dev.git .
 
-# dont forget to head into 03_add-frontend-react now!!
+# dont forget to head into 04_react-web-api now!!
 
 # install the deps, yo
 npm install

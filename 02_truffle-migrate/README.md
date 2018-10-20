@@ -94,7 +94,7 @@ npx truffle migrate
 Congratulations! you now have a truffle project that deploys all the DutchX contracts as 
 part of it's first migration.
 
-Now you can continue with [Example 02: Use DutchX as an Oracle](https://github.com/gnosis/dx-examples-dev/tree/master/02_use-dx-as-an-oracle): 
+Now you can continue with [Example 02: Use DutchX as an Oracle](https://github.com/gnosis/dx-examples-dev/tree/master/03_onchain-usage-oracle): 
 * This example shows how to create your own contract and migrations that makes 
 use of the DutchX.
 * In this example we will create a `Safe` contract to deposit fund. We will
