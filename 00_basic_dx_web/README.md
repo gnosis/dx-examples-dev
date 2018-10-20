@@ -53,9 +53,7 @@ this example:
 3. **Deposit 0.1 ETH in DutchX proxy**: If we did the two prior steps, the user
   will have 0.1 WETH more in it's balance.
 
-<p align="center">
-  <img width="350px" src="./docs/sequence-deposit.png" />
-</p>
+![Sequence for deposit](./docs/sequence-deposit.png "Sequence for deposit")
 
 ## 2. Create a basic web
 For this basic example, we will use `reate-react-app` because it creates a 
@@ -203,9 +201,7 @@ class App extends Component {
 
 The app should look like this:
 
-<p align="center">
-  <img width="350px" src="./docs/show-account.png" />
-</p>
+![Show account](./docs/show-account.png "Show account")
 
 ## 4. Get the ABI from Etherscan for the DutxhX
 Check out the **Rinkeby**'s addresses for the DutchX in the documentation:
@@ -274,10 +270,7 @@ class App extends Component {
 
 You should see something like:
 
-<p align="center">
-  <img width="350px" src="./docs/show-auctioneer.png" />
-</p>
-
+![Show auctioneer](./docs/show-auctioneer.png "Show auctioneer")
 
 ## 7. Get balances
 Before we implement the deposit, we will create a new handy button that will 
