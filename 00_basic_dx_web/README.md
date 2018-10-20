@@ -1,11 +1,10 @@
 # Basic DutchX Web
-We will make a small app that will allow us to deposit `WETH` (Wrapped Ether) 
-into the DutchX.
+We will make a small app that deposits `WETH` (Wrapped Ether) into the DutchX.
 
 The app will be something like:
 
 <p align="center">
-![Deposit WETH App](./docs/deposit-WETH-app.png "Deposit WETH App")
+  <img width="350px" src="./docs/deposit-WETH-app.png" />
 </p>
 
 This example will guide you through so you'll learn:
@@ -54,7 +53,9 @@ this example:
 3. **Deposit 0.1 ETH in DutchX proxy**: If we did the two prior steps, the user
   will have 0.1 WETH more in it's balance.
 
-![Sequence for deposit](./docs/sequence-deposit.png "Sequence for deposit")
+<p align="center">
+  <img width="350px" src="./docs/sequence-deposit.png" />
+</p>
 
 ## 2. Create a basic web
 For this basic example, we will use `reate-react-app` because it creates a 
@@ -202,7 +203,9 @@ class App extends Component {
 
 The app should look like this:
 
-![Show account](./docs/show-account.png "Show account")
+<p align="center">
+  <img width="350px" src="./docs/show-account.png" />
+</p>
 
 ## 4. Get the ABI from Etherscan for the DutxhX
 Check out the **Rinkeby**'s addresses for the DutchX in the documentation:
@@ -271,7 +274,10 @@ class App extends Component {
 
 You should see something like:
 
-![Show auctioneer](./docs/show-auctioneer.png "Show auctioneer")
+<p align="center">
+  <img width="350px" src="./docs/show-auctioneer.png" />
+</p>
+
 
 ## 7. Get balances
 Before we implement the deposit, we will create a new handy button that will 
