@@ -1,20 +1,62 @@
 # Basic DutchX Web
-We will make a small app that will allow to deposit `WETH` (Wrapped Ether) into
-the DutchX.
+We will make a small app that will allow us to deposit `WETH` (Wrapped Ether) 
+into the DutchX.
 
 The app will be something like:
 
+<p align="center">
 ![Deposit WETH App](./docs/deposit-WETH-app.png "Deposit WETH App")
+</p>
+
+This example will guide you through so you'll learn:
+* What are the important contracts for DutchX and workflows
+* How to create a dApp from scratch that uses the DutchX contracts
+* How does the deposit of the DutchX works (Ether, WETH or any other token)
+* This example, can be continued to invoke other simpler function like the ones
+  for submiting sell orders or buy orders.
 
 For this example you'll need:
 * **Metamask**: https://metamask.io/
 * **Node JS**: https://nodejs.org/en/
 * **React Create App**: https://github.com/facebook/create-react-app
 
-Also, it would be good if before you start, you get some test Ether:
+Also, it would be good if before you start, you get some Rinkeby Ether:
 * **Get some Rinkeby Ether**: https://faucet.rinkeby.io
 
-## 1. Create a basic web
+> This example is part of the documentation in http://dutchx.readthedocs.io/en/latest/
+>
+> You can find other examples in the [Build on top of DutchX project](https://github.com/gnosis/dx-examples-dev)
+
+
+## 1. Undersanding the deposit of WETH (or any other ERC20 token)
+In order to deposit something in the DutchX, it must be an ERC20 token.
+
+Ether is not an ERC20 token, this is why we need to wrap it first, this means 
+that we need to **send some ether to the `deposit` function in a token contract called WETH (Wrapped Ether))**:
+* WETH contract: https://rinkeby.etherscan.io/address/0xc778417e063141139fce010982780140aa0cd5ab#code
+* Info about WETH: https://weth.io
+* More info about WETH: https://blog.0xproject.com/canonical-weth-a9aa7d0279dd
+
+Other important thing we should know, is that the `deposit` function in DutchX, 
+will call the ERC20 token contract `transferFrom` function to withdraw the 
+amount for the user:
+* This `transferFrom` will fail if the user don't set an allowance of at least
+  the deposited amount for the DutchX proxy address (entry point for DutchX)
+* So you first need to invoke the `approve` function
+* This step is **mandatory** for WETH and for any other ERC20 token.
+
+This sequence diagram will show you the 3 important operations we will do in 
+this example:
+1. **Wrap 0.1 WETH**: Remember Ether is not ERC20 compatible, so we need to do this 
+  step (`deposit` function on WETH contract).
+2. **Set allowance, so DutchX proxy can transfer 0.1 WETH**: Otherwise the
+  deposit will fail, because the DutchX wouln't be entitled to do the operation.
+3. **Deposit 0.1 ETH in DutchX proxy**: If we did the two prior steps, the user
+  will have 0.1 WETH more in it's balance.
+
+![Sequence for deposit](./docs/sequence-deposit.png "Sequence for deposit")
+
+## 2. Create a basic web
 For this basic example, we will use `reate-react-app` because it creates a 
 basic React web, with nice defaults.
 
@@ -111,7 +153,7 @@ label, input, button {
 }
 ```
 
-## 2. Use web3 to access the blockchain
+## 3. Use web3 to access the blockchain
 Install web3:
 ```bash
 npm install web3@1.0.0-beta.36 --save
@@ -162,7 +204,7 @@ The app should look like this:
 
 ![Show account](./docs/show-account.png "Show account")
 
-## 3. Get the ABI from Etherscan for the DutxhX
+## 4. Get the ABI from Etherscan for the DutxhX
 Check out the **Rinkeby**'s addresses for the DutchX in the documentation:
 * https://dutchx.readthedocs.io/en/latest/smart-contracts_addresses.html
 
@@ -173,7 +215,7 @@ Get from Etherscan the ABI for DutchExchange contract, and save it in
 [src/abi-dutchx.json](./src/abi-dutchx.json)
 * Master DutchExchange contract: https://rinkeby.etherscan.io/address/0x9e5e05700045dc70fc42c125d4bd661c798d4ce9#code
 
-## 4. Get the ABI from Etherscan for the Wrapped Ether
+## 5. Get the ABI from Etherscan for the Wrapped Ether
 The official address for Rinkeby WETH is:
 * `0xc778417e063141139fce010982780140aa0cd5ab`
 
@@ -190,7 +232,7 @@ Get the ABI for DutchExchange contract, and save it in
 * Wrapped Ether contract: https://rinkeby.etherscan.io/address/0xc778417e063141139fce010982780140aa0cd5ab#code
 
 
-## 4. Instanciate the contracts
+## 6. Instanciate the contracts
 > First consider reading https://web3js.readthedocs.io/en/1.0/web3-eth-contract.html
 
 Instanciate the contract and get the **auctioneer** from it (https://github.com/gnosis/dx-contracts/blob/master/contracts/DutchExchange.sol#L32):
@@ -231,7 +273,7 @@ You should see something like:
 
 ![Show auctioneer](./docs/show-auctioneer.png "Show auctioneer")
 
-## 5. Get balances
+## 7. Get balances
 Before we implement the deposit, we will create a new handy button that will 
 tell us:
 * **Ether balance**: It should be the same as what Metamask reports.
@@ -312,7 +354,7 @@ class App extends Component {
 }
 ```
 
-## 6. Wrap some Ether
+## 8. Wrap some Ether
 Same as before, we add a new button and a new method:
 
 ```jsx
@@ -357,7 +399,7 @@ class App extends Component {
 
 ```
 
-## 7. Set an allowance in WETH for the DutchX
+## 9. Set an allowance in WETH for the DutchX
 Same as before, we add a new button and a new method:
 
 ```jsx
@@ -400,7 +442,7 @@ class App extends Component {
 }
 ```
 
-## 5. Do the deposit
+## 10. Do the deposit
 In this step, we will implement the deposit of the WETH (Wrapped Ether).
 
 The deposit on the DutchX will fail if you don't have:
