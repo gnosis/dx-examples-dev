@@ -1,8 +1,8 @@
 # Onchain integration: Oracle
-This example shows how to create your own contract and migrations that makes 
+This project shows how to create your own contract and migrations that makes 
 use the DutchX.
 
-This example creates a `Safe` contract to deposit fund. We will use the DutchX 
+It creates a `Safe` contract to deposit fund. We will use the DutchX 
 to help us estimate the price in `USD` for any token in our `Safe`.
 
 > This example is part of the guide http://dutchx.readthedocs.io/en/latest/
@@ -11,7 +11,7 @@ to help us estimate the price in `USD` for any token in our `Safe`.
 
 # First things first
 If you haven't done so, you have to complete firts the 
-[Example 01: Build on top of the DX](https://github.com/gnosis/dx-examples-dev/tree/master/02_truffle-migrate).
+[Example 02: Truffle Migrate](https://github.com/gnosis/dx-examples-dev/tree/master/02_truffle-migrate).
 
 This second example starts from the `my-cool-app` code generated after 
 completing the first example.

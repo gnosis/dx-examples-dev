@@ -1,6 +1,11 @@
 /* global artifacts */
 /* eslint no-undef: "error" */
 
+// migrateDx
+//  * Is a migration script made for deploying DutchX in a local-ganache test
+//    environment in a simpler way
+//  * For more details check out:
+//    https://github.com/gnosis/dx-contracts/blob/master/src/migrations/index.js
 const migrateDx = require('@gnosis.pm/dx-contracts/src/migrations')
 
 module.exports = function (deployer, network, accounts) {

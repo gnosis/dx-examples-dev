@@ -472,6 +472,15 @@ class App extends Component {
 }
 ```
 
+## Congratulations
+Congratulations! you now have a basic app that deposit WETH into the DutchX.
+
+Try to add some balance into the DutchX.
+
+You should have now you app looking like:
+![Deposited balance](./docs/deposited-balance.png "Deposited balance")
+
+
 ## Do you feel like continuing this example
 You can continue for example by adding:
 * Error handling
@@ -480,8 +489,8 @@ You can continue for example by adding:
 * Add the Withdraw from DutchX operation
 
 A posible solution could be:
-* Github: 
-* Demo: 
+* Github: https://github.com/anxolin/dx-balances
+* Demo: https://epic-fermat-780181.netlify.com
 
 You still want to add more studd to the example? 😊
 
