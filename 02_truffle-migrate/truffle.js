@@ -7,7 +7,7 @@ const DEFAULT_MNEMONIC = 'candy maple cake sugar pudding cream honey rich smooth
 
 function truffleConfig ({
   mnemonic = DEFAULT_MNEMONIC,
-  gasPriceGWei = DEFAULT_GAS_PRICE_GWEI,
+  gasPriceGWei = process.env.GAS_PRICE_GWEI || DEFAULT_GAS_PRICE_GWEI,
   gas = GAS_LIMIT,
   optimizedEnabled = false,
   urlRinkeby = 'https://rinkeby.infura.io/',
