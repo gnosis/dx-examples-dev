@@ -45,9 +45,7 @@ contract Safe {
         _;
     }
     
-    function Safe (address _dx) public {
-        require(address(_dx) != address(0));
-        
+    function Safe () public {
         owner = msg.sender;
     }
     
@@ -89,8 +87,8 @@ Now that we have our basic implementation of the `Safe` contract, let's say we
 want to return our balance, but instead of returing it in the currency of the 
 token, we want to return it in `USD`.
 
-It happens that **DutchX can be used as a price oracle**, and can tell you the 
-closing price of any listed token pair. 
+One interesting fact about DutchX is that **it can be used as a price oracle**,
+and can tell you the closing prices for any past auction. 
 
 So let's add the dependency so our `Safe` contract can invoke any `DutchExchange`
 operation. We can just follow this 4 steps:
@@ -178,41 +176,25 @@ You can check the complete Safe contract [here](./contracts/Safe.sol).
 To deploy our new contract, we depend on having deployed the **DutchX**,
 since it's deployed in the migration `2_DEV_dependencies.js` we are good to go.
 
-Create a new migration `migrations/3_deploy_safe.js`
-with the folowing content:
-
-```js
-/* global artifacts */
-/* eslint no-undef: "error" */
-
-const Safe = artifacts.require("Safe")
-const DutchExchangeProxy = artifacts.require("DutchExchangeProxy")
-
-module.exports = function(deployer, network, accounts) {  
-  const account = accounts[0]
-  return deployer
-    // Make sure DutchX is deployed
-    .then(() => DutchExchangeProxy.deployed())
-
-    // Deploy Safe contract
-    .then(dxProxy => {
-      console.log('Deploying Safe with %s as the owner and %s as the DutchExchange contract', account, dxProxy.address)
-      return deployer.deploy(Safe, dxProxy.address)
-    })
-}
-```
+Create a new migration with the following content:
+* [migrations/3_deploy_safe.js](./migrations/3_deploy_safe.js)
 
 Execute the migrations (make sure you have `ganache-cli` running):
+
 ```bash
 npx truffle migrate
 ```
 
-If everything was smooth, you should have the `Safe` contract deployed and 
-pointing to the `DutchExchangeProxy` address.
+If everything was smooth, you should have the `Safe` contract deployed and pointing to the `DutchExchangeProxy` address.
 
-## Create some test setup for development
-Sometimes it's usefull to add, in the migrations, some setup that should be done
-only in the local `ganache-cli` node.
+![Migrate safe](./docs/deploy-safe.png "Migrate safe")
+
+Check that now the Safe has an address:
+
+![truffle networks](./docs/safe-networks.png "truffle networks")
+
+## Create some test data for development
+Sometimes it's usefull to add, in the migrations, some setup that should be done only in the local `ganache-cli` node.
 
 A easy way of solving this is adding the logic only for the network 
 `development`:
@@ -229,64 +211,17 @@ module.exports = function(deployer, network, accounts) {
 }
 ```
 
-So, let's setup the following:
-* We will deposit `1 ether` in Wrapped Ether token (`WETH`) in our safe
-* So, first we need to wrap `Ether` into the `EtherToken` contract
+So, let's setup the following: **We will deposit `1 ether` in Wrapped Ether token (`WETH`) in our safe**
+* First we need to wrap `Ether` into the `EtherToken` contract
 * Then, we use the ERC20 `approve` method to allow the safe to take the `WETH`.
 * Finally, we do a `deposit` into the `Safe` contract.
 
-This is how it would look:
-```js
-const ETH_TEST_AMOUNT = 1e18
+Create a new migration with the following content:
+* [migrations/4_DEV_test_data.js](./migrations/4_DEV_test_data.js)
 
-// ...
-module.exports = function(deployer, network, accounts) {  
-  // ...
+You should see something like:
 
-  const account = accounts[0]
-  if (network === 'development') {    
-    const EtherToken = artifacts.require("EtherToken")
-  
-    deployerPromise = deployerPromise
-      .then(() => EtherToken.deployed())
-      // Wrap 1 ETH for testing
-      .then(weth => {
-        console.log('Wrap %d ETH into WETH for account %s', ETH_TEST_AMOUNT / 1e18, account)
-        return weth.deposit({ value: ETH_TEST_AMOUNT })
-      })
-
-      // Let the Safe take the 1 ETH (so we can deposit on it)
-      .then(() => Safe.deployed())
-      .then(() => EtherToken.deployed())      
-      .then(weth => {
-        console.log('Approve %d WETH for safe address %s', ETH_TEST_AMOUNT / 1e18, Safe.address)
-        return weth.approve(Safe.address, ETH_TEST_AMOUNT)
-      })
-
-      // Deposit the WETH into the safe
-      .then(() => Safe.deployed())
-      .then(safe => {
-        console.log('Deposit %d WETH (%s) into the safe %s',
-          ETH_TEST_AMOUNT / 1e18,
-          EtherToken.address,
-          Safe.address
-        )
-        return safe.deposit(EtherToken.address, ETH_TEST_AMOUNT)
-      })
-  }
-}
-```
-
-
-The final `migrations/3_deploy_safe.js` can be found 
-[here](./migrations/3_deploy_safe.js).
-
-Let's apply the migrations:
-> NOTE: the `--reset` flag was added, because the `3_deploy_safe` migration was
-> already applied.
-```bash
-npx truffle migrate --reset
-```
+![Dev data](./docs/deploy-test-data.png "Dev data")
 
 # Check the result in the console
 The `truffle console` is a great tool for developing:
