@@ -216,8 +216,8 @@ Our wallet should have some Ether already, so if you don't have it yet, please
 get it from:
 * https://faucet.rinkeby.io
 
-Get the ABI for DutchExchange contract, and save it in 
-[src/abiWeth.json](./src/abiWeth.json)
+Get the ABI for WETH contract, and save it in 
+[src/abiWeth.json](./src/abiWeth.json):
 * Wrapped Ether contract: https://rinkeby.etherscan.io/address/0xc778417e063141139fce010982780140aa0cd5ab#code
 
 
@@ -327,6 +327,7 @@ class App extends Component {
         </div>
       )
     })
+  }
 
   render() {
     return (
@@ -422,7 +423,7 @@ class App extends Component {
       <div className="App">
         {/* ... */}
 
-        <button onClick={ this.deposit }>Deposit</button>
+        <button onClick={ this.setAllowance }>Set Allowance</button>
 
         {/* ... */}
       </div>
@@ -443,8 +444,61 @@ Check out the deposit function of the DutchX:
 
 We update the deposit function to:
 ```jsx
+class App extends Component {
+  // ...
+
+  deposit = async () => {
+    const [ account ] = await web3.eth.getAccounts()
+    const amount = this.state.amount
+
+    // See: https://github.com/gnosis/dx-contracts/blob/master/contracts/DutchExchange.sol#L351
+    const txReceipt = await this.dutchx.methods
+      .deposit(addressWeth, web3.utils.toWei(amount))
+      .send({
+        from: account
+      })
+
+    const { transactionHash } = txReceipt
+    this.setState({
+      message: (
+        <div>
+          <p>Deposited { amount } WETH into the DutchX.</p>
+          <p>See transaction in EtherScan:<br />
+            <a href={ 'https://rinkeby.etherscan.io/tx/' + transactionHash }>{ transactionHash }</a></p>
+        </div>
+      )
+    })
+  }
+}
 ```
 
+## Do you feel like continuing this example
+You can continue for example by adding:
+* Error handling
+* Support for Kovan and Mainnet
+* Add the Unwrap WETH operation
+* Add the Withdraw from DutchX operation
+
+A posible solution could be:
+* Github: 
+* Demo: 
+
+You still want to add more studd to the example? 😊
+
+There a lot more you can do:
+* Allow to use any token, not just WETH (note you don't need the wrapping for 
+  other tokens)
+* Allow to post a sell order and claim as a seller
+* Allow to post a buy order and claim as a buyer
+* List all the token pairs, and display information about the ongoing auction
+
+## Are you still feeling creative?
+
+* Share what are you doing in https://gitter.im/gnosis/DutchX, maybe someone 
+  helps you out or can give you some feedback
+
+Looking for ideas:
+* https://dutchx.readthedocs.io/en/latest/integration-ideas.html
 
 ## Next steps
 Congratulations! Now you've built a nice basic web to wrap ether, set the 

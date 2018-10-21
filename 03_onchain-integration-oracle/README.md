@@ -343,11 +343,11 @@ safe.balances.call(weth.address).then(n => console.log('Balance of WETH in the s
 safe.getBalanceInUsd.call(weth.address).then(([n, d]) => console.log('Blance of WETH: %d$', n.div(d).div(1e18).toNumber()))
 ```
 
-
-# Next steps
+## Congratulations
 Congratulations! Now you have deployed your own contracts that makes use of the
 DutchX.
 
+## Do you feel like continuing this example
 This example was using the DutchX as an oracle in a very basic way. It's just
 uses the price of the last auction for getting a price estimate. 
 
@@ -360,6 +360,22 @@ be interesting to use in your contracts
 ([Checkout the contract](https://github.com/gnosis/dx-contracts/blob/master/contracts/DutchExchange.sol#L351)):
 * i.e. Create a contract that submit sell orders and allow users to echange tokens
   onchain
+
+
+## Are you still feeling creative?
+
+* Share what are you doing in https://gitter.im/gnosis/DutchX, maybe someone 
+  helps you out or can give you some feedback
+
+Looking for ideas:
+* https://dutchx.readthedocs.io/en/latest/integration-ideas.html
+
+
+## Next steps
+Congratulations! Now you have deployed your own contracts that makes use of the
+DutchX.
+
+
 
 Other interesting guides are:
 * [Example 04: React Web - Boilerplate and API ](https://github.com/gnosis/dx-examples-dev/tree/master/04_react-web-api): 

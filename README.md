@@ -12,7 +12,7 @@ All the guides, and reference documentation can be found in:
 ## Start from the begining
 So the examples are part of a guide and you are suppouse to do them in order.
 
-So the first one should be [Example 01: Build on top of the DX](https://github.com/gnosis/dx-examples-dev/tree/master/02_truffle-migrate)
+So the first one should be [Example 01: Basic Web - Deposit](https://github.com/gnosis/dx-examples-dev/tree/master/01_basic-web-deposit)
 
 The complete list of examples is:
 * [Example 01: Basic Web - Deposit](https://github.com/gnosis/dx-examples-dev/tree/master/01_basic-web-deposit):
