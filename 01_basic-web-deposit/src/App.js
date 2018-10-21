@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import './App.css'
 import web3 from './web3'
 
-import abiDutchx from './abi-dutchx'
-import abiWeth from './abi-weth'
-const addressDutchx = '0x4e69969d9270ff55fc7c5043b074d4e45f795587'
+import abiDutchX from './abiDutchX'
+import abiWeth from './abiWeth'
+const addressDutchX = '0x4e69969d9270ff55fc7c5043b074d4e45f795587'
 const addressWeth = '0xc778417e063141139fce010982780140aa0cd5ab'
 
 
@@ -65,7 +65,7 @@ class App extends Component {
     const amount = this.state.amount
 
     const txReceipt = await this.weth.methods
-      .approve(addressDutchx, web3.utils.toWei(amount))
+      .approve(addressDutchX, web3.utils.toWei(amount))
       .send({
         from: account
       })
@@ -96,7 +96,7 @@ class App extends Component {
       .then(web3.utils.fromWei)
 
     const wethAllowancePromise = this.weth.methods
-      .allowance(account, addressDutchx)
+      .allowance(account, addressDutchX)
       .call()
       .then(web3.utils.fromWei)
 
@@ -135,7 +135,7 @@ class App extends Component {
   }
 
   componentDidMount () {
-    this.dutchx = new web3.eth.Contract(abiDutchx, addressDutchx)
+    this.dutchx = new web3.eth.Contract(abiDutchX, addressDutchX)
     this.weth = new web3.eth.Contract(abiWeth, addressWeth)
 
     // Test to get some basic data

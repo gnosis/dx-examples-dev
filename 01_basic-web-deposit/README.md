@@ -41,7 +41,7 @@ For this basic example, we will use `reate-react-app` because it creates a
 basic React web, with nice defaults.
 
 ```bash
-reate-react-app dx-basic-web
+npx reate-react-app dx-basic-web
 cd dx-basic-web
 yarn start
 ```
@@ -57,8 +57,8 @@ Aditionally, add a message to be able to display the success of the operation.
 Your `src/App.js` should look something like:
 
 ```jsx
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
 
 class App extends Component {
   state = {
@@ -67,7 +67,6 @@ class App extends Component {
   }
 
   deposit = async () => {
-    const [ account ] = await web3.eth.getAccounts()
     this.setState({
       message: `Mmmmm, I think you have to do something else to make it work`
     })
@@ -95,15 +94,25 @@ class App extends Component {
           )}
         </header>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
 ```
 
 Style a bit the inputs and message (`src/App.css`):
 ```css
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .message {
   text-align: left;
   padding: 0.5em;
@@ -192,7 +201,7 @@ Write down the address for the **Proxy Contract**, we will need that later:
 * `0x4e69969d9270ff55fc7c5043b074d4e45f795587`
 
 Get from Etherscan the ABI for DutchExchange contract, and save it in 
-[src/abi-dutchx.json](./src/abi-dutchx.json)
+[src/abiDutchX.json](./src/abiDutchX.json)
 * Master DutchExchange contract: https://rinkeby.etherscan.io/address/0x9e5e05700045dc70fc42c125d4bd661c798d4ce9#code
 
 ## 5. Get the ABI from Etherscan for the Wrapped Ether
@@ -208,7 +217,7 @@ get it from:
 * https://faucet.rinkeby.io
 
 Get the ABI for DutchExchange contract, and save it in 
-[src/abi-weth.json](./src/abi-weth.json)
+[src/abiWeth.json](./src/abiWeth.json)
 * Wrapped Ether contract: https://rinkeby.etherscan.io/address/0xc778417e063141139fce010982780140aa0cd5ab#code
 
 
@@ -221,16 +230,16 @@ Instanciate the contract and get the **auctioneer** from it (https://github.com/
 // ...
 
 // Include the ABIs and the addresses
-import abiDutchx from './abi-dutchx'
-import abiWeth from './abi-weth'
+import abiDutchX from './abiDutchX'
+import abiWeth from './abiWeth'
 
-const addressDutchx = '0x4e69969d9270ff55fc7c5043b074d4e45f795587'
+const addressDutchX = '0x4e69969d9270ff55fc7c5043b074d4e45f795587'
 const addressWeth = '0xc778417e063141139fce010982780140aa0cd5ab'
 
 class App extends Component {   
   componentDidMount () {
     // Instanciate the contract
-    this.dutchx = new web3.eth.Contract(abiDutchx, addressDutchx)
+    this.dutchx = new web3.eth.Contract(abiDutchX, addressDutchX)
     this.weth = new web3.eth.Contract(abiWeth, addressWeth)
 
     // Test to get some basic data
@@ -283,7 +292,7 @@ class App extends Component {
       .then(web3.utils.fromWei)
 
     const wethAllowancePromise = this.weth.methods
-      .allowance(account, addressDutchx)
+      .allowance(account, addressDutchX)
       .call()
       .then(web3.utils.fromWei)
 
@@ -391,7 +400,7 @@ class App extends Component {
     const amount = this.state.amount
 
     const txReceipt = await this.weth.methods
-      .approve(addressDutchx, web3.utils.toWei(amount))
+      .approve(addressDutchX, web3.utils.toWei(amount))
       .send({
         from: account
       })
