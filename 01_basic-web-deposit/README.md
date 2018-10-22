@@ -41,7 +41,7 @@ For this basic example, we will use `reate-react-app` because it creates a
 basic React web, with nice defaults.
 
 ```bash
-npx reate-react-app dx-basic-web
+npx create-react-app dx-basic-web
 cd dx-basic-web
 yarn start
 ```
@@ -103,19 +103,30 @@ export default App
 
 Style a bit the inputs and message (`src/App.css`):
 ```css
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
 .message {
+  position: relative;
   text-align: left;
-  padding: 0.5em;
+  padding: 1.5em 0.5em 1em 0.5em;
   margin: 1em 0;
   background-color:#92b19e;
   color: white;
@@ -126,10 +137,16 @@ body {
   color: #404040;
 }
 
-.message .times{
-  float: right;
+.message .times {
+  position: absolute;
+  top: 0.3em;
+  right: 0.3em;
   display: block;
   cursor: pointer;
+}
+
+.message .times:hover {
+  color: black
 }
 
 input, button {
