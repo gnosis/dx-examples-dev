@@ -509,7 +509,7 @@ A posible solution could be:
 * Github: https://github.com/anxolin/dx-balances
 * Demo: https://epic-fermat-780181.netlify.com
 
-You still want to add more studd to the example? 😊
+You still want to add more stuff to the example? 😊
 
 There a lot more you can do:
 * Allow to use any token, not just WETH (note you don't need the wrapping for 
