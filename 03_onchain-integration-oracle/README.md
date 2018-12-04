@@ -32,7 +32,7 @@ from the safe.
 
 A basic implementation would be:
 ```js
-pragma solidity ^0.4.21;
+pragma solidity ^0.4.24;
 
 import "@gnosis.pm/util-contracts/contracts/Token.sol";
 
@@ -94,7 +94,7 @@ So let's add the dependency so our `Safe` contract can invoke any `DutchExchange
 operation. We can just follow this 4 steps:
 
 ```js
-pragma solidity ^0.4.21;
+pragma solidity ^0.4.24;
 
 // 1. Let's import the DutchExchange contract
 import "@gnosis.pm/dx-contracts/contracts/DutchExchange.sol";

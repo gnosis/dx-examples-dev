@@ -1,4 +1,4 @@
-pragma solidity ^0.4.21;
+pragma solidity ^0.4.24;
 
 import "@gnosis.pm/util-contracts/contracts/Token.sol";
 import "@gnosis.pm/dx-contracts/contracts/DutchExchange.sol";
