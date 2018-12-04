@@ -7,13 +7,15 @@ const DEFAULT_MNEMONIC = 'candy maple cake sugar pudding cream honey rich smooth
 
 function truffleConfig ({
   mnemonic = DEFAULT_MNEMONIC,
-  gasPriceGWei = DEFAULT_GAS_PRICE_GWEI,
+  gasPriceGWei = process.env.GAS_PRICE_GWEI || DEFAULT_GAS_PRICE_GWEI,
   gas = GAS_LIMIT,
-  optimizedEnabled = false,
+  optimizedEnabled = true,
   urlRinkeby = 'https://rinkeby.infura.io/',
   urlMainnet = 'https://mainnet.infura.io',
   urlDevelopment = 'localhost',
-  portDevelopment = 8545
+  portDevelopment = 8545,
+  solcVersion = '0.4.24',
+  solcUseDocker = false
 } = {}) {
   assert(mnemonic, 'The mnemonic has not been provided')
   console.log(`Using gas limit: ${gas / 1000} K`)
@@ -23,7 +25,7 @@ function truffleConfig ({
   const gasPrice = gasPriceGWei * 1e9
 
   const _getProvider = url => {
-    return () => new HDWalletProvider({ mnemonic, url })
+    return () => new HDWalletProvider(mnemonic, url)
   }
 
   return {
@@ -48,14 +50,19 @@ function truffleConfig ({
         gasPrice
       }
     },
-    solc: {
-      optimizer: {
-        enabled: optimizedEnabled
+    compilers: {
+      solc: {
+        version: solcVersion,
+        docker: solcUseDocker,
+        settings: {
+          optimizer: {
+            enabled: optimizedEnabled,
+            runs: 200
+          }
+        }
       }
     }
   }
 }
 
-module.exports = truffleConfig({
-  optimizedEnabled: true
-})
+module.exports = truffleConfig()

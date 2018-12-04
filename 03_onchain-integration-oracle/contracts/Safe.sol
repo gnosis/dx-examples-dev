@@ -10,12 +10,12 @@ contract Safe {
     DutchExchange public dx;
     
     modifier onlyOwner () {
-        require(msg.sender == owner);
+        require(msg.sender == owner, "Only the owner can do the operation");
         _;
     }
     
-    function Safe (address _dx) public {
-        require(address(_dx) != address(0));
+    constructor (address _dx) public {
+        require(address(_dx) != address(0), "The DutchX address must be valid");
         
         owner = msg.sender;
         dx = DutchExchange(_dx);
@@ -26,8 +26,8 @@ contract Safe {
     }
     
     function deposit (address token, uint amount) public onlyOwner returns (uint) {
-        require(amount > 0);
-        require(Token(token).transferFrom(msg.sender, this, amount));
+        require(amount > 0, "The deposit amount should be greater than 0");
+        require(Token(token).transferFrom(msg.sender, this, amount), "The deposit transfer must succeed");
         
         balances[token] += amount;
         emit Deposit(token, amount);
@@ -36,9 +36,9 @@ contract Safe {
     }
     
     function withdraw (address token, uint amount) public onlyOwner returns (uint) {
-        require(amount > 0);
-        require(amount <= balances[token]);
-        require(Token(token).transfer(msg.sender, amount));
+        require(amount > 0, "The withdraw amount should be greater than 0");
+        require(amount <= balances[token], "There should be enough balance for the token");
+        require(Token(token).transfer(msg.sender, amount), "The withdraw transfer must succeed");
         
         balances[token] -= amount;
         emit Withdraw(token, amount);

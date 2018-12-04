@@ -9,11 +9,11 @@
   "author": "Angel Rodriguez <anxolin@gmail.com> (https://github.com/anxolin)",
   "license": "ISC",
   "dependencies": {
-    "@gnosis.pm/dx-contracts": "^1.0.1",
-    "truffle-contract": "^3.0.6",
-    "truffle-hdwallet-provider": "0.0.5"
+    "@gnosis.pm/dx-contracts": "^1.0.1"
   },
   "devDependencies": {
-    "truffle": "^4.1.5"
+    "truffle": "^5.0.0-user-level-mnemonic.0",
+    "truffle-contract": "^3.0.6",
+    "truffle-hdwallet-provider": "^1.0.0-web3one.2"
   }
 }

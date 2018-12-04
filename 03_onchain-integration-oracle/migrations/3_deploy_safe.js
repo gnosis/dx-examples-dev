@@ -4,15 +4,13 @@
 const Safe = artifacts.require("Safe")
 const DutchExchangeProxy = artifacts.require("DutchExchangeProxy")
 
-module.exports = function(deployer, network, accounts) {  
+module.exports = async (deployer, network, accounts) => {  
   const account = accounts[0]
-  return deployer
-    // Make sure DutchX is deployed
-    .then(() => DutchExchangeProxy.deployed())
 
-    // Deploy Safe contract
-    .then(dxProxy => {
-      console.log('Deploying Safe with %s as the owner and %s as the DutchExchange contract', account, dxProxy.address)
-      return deployer.deploy(Safe, dxProxy.address)
-    })
+  // Make sure the proxy is deployed
+  const dxProxy = await DutchExchangeProxy.deployed()
+  
+  // Deploy the Safe
+  console.log('Deploying Safe with %s as the owner and %s as the DutchExchange contract', account, dxProxy.address)
+  await deployer.deploy(Safe, dxProxy.address)
 }

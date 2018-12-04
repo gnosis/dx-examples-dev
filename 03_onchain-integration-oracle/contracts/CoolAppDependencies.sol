@@ -7,6 +7,9 @@ pragma solidity ^0.4.24;
 //  For other environments, we just use the compiled contracts from the NPM 
 //  package
  
+// See contract for more details:
+//    https://github.com/gnosis/dx-contracts/blob/master/contracts/DxDevDependencies.sol
+
 import "@gnosis.pm/dx-contracts/contracts/DxDevDependencies.sol";
 
 contract CoolAppDependencies {}
