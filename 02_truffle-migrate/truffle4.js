@@ -9,13 +9,11 @@ function truffleConfig ({
   mnemonic = DEFAULT_MNEMONIC,
   gasPriceGWei = process.env.GAS_PRICE_GWEI || DEFAULT_GAS_PRICE_GWEI,
   gas = GAS_LIMIT,
-  optimizedEnabled = true,
+  optimizedEnabled = false,
   urlRinkeby = 'https://rinkeby.infura.io/',
   urlMainnet = 'https://mainnet.infura.io',
   urlDevelopment = 'localhost',
-  portDevelopment = 8545,
-  solcVersion = '0.4.24',
-  solcUseDocker = false
+  portDevelopment = 8545
 } = {}) {
   assert(mnemonic, 'The mnemonic has not been provided')
   console.log(`Using gas limit: ${gas / 1000} K`)
@@ -50,19 +48,14 @@ function truffleConfig ({
         gasPrice
       }
     },
-    compilers: {
-      solc: {
-        version: solcVersion,
-        docker: solcUseDocker,
-        settings: {
-          optimizer: {
-            enabled: optimizedEnabled,
-            runs: 200
-          }
-        }
+    solc: {
+      optimizer: {
+        enabled: optimizedEnabled
       }
     }
   }
 }
 
-module.exports = truffleConfig()
+module.exports = truffleConfig({
+  optimizedEnabled: true
+})

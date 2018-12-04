@@ -5,8 +5,8 @@
 //  * Is a migration script made for deploying DutchX in a local-ganache test
 //    environment in a simpler way
 //  * For more details check out:
-//    https://github.com/gnosis/dx-contracts/blob/master/src/migrations-truffle-5/index.js
-const migrateDx = require('@gnosis.pm/dx-contracts/src/migrations-truffle-5')
+//    https://github.com/gnosis/dx-contracts/blob/master/src/migrations-truffle-4/index.js
+const migrateDx = require('@gnosis.pm/dx-contracts/src/migrations-truffle-4')
 
 module.exports = function (deployer, network, accounts) {
   return migrateDx({

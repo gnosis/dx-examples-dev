@@ -31,24 +31,27 @@ cd my-cool-app
 npm init
 ```
 
-Make it a truffle project:
+Make it a Truffle 5 project:
 ```bash
 mkdir contracts migrations
-npm install truffle@4.1.5 --save-dev
-npm install truffle-contract@^3.0.6 truffle-hdwallet-provider@^0.0.5 --save
+npm install --save-dev truffle@^5.0.0-beta.2 truffle-hdwallet-provider@^1.0.0-web3one.1 truffle-contract
 ```
 
-> We set up a fixed version for truffle, so the compiler is the same that the
-> dx used.
+> If you prefer to stick to Truffle 4 for now, you can, you can alter slight the 
+> steps to adapt it to this version. 
 >
-> Truffle 5.0 is still a beta, this version will allow to set any compiler 
-> version soon we'll migrate the scripts to this version (it has breaking 
-> changes)
+> It just change thes small changes from the original guide:
+> * *Dependencies*: `npm install --save-dev truffle truffle-hdwallet-provider truffle-contract`
+> * *truffle.js*: When configuring the project, use this 
+  [truffle4.js](./truffle4.js) as your truffle config.
+> * *DutchX migration script*: Use the ones in the dir `[migrations-truffle-4](./migrations-truffle-4)`
+> * *Example contracts*: Use the ones in the dir `[contracts-truffle-4](./contracts-truffle-4)`
+
 
 Add a truffle config:
 * Add [truffle.js](./truffle.js) into the root of the project. It has a pretty
   standard boilerplate config with:
-    * **Networks**: Define networks: ganache-cli (localhost), Rinkeby, Kovan and Mainnet.
+    * **Networks**: Define networks: ganache-cli (development), rinkeby, kovan and mainnet.
     * **Mnemonic**: Configured with a default test mnemonic. It allows to change
       it by providing the `MNEMONIC` environment variable.
         * Default Mnemonic: `candy maple cake sugar pudding cream honey rich smooth crumble sweet treat`
@@ -72,7 +75,7 @@ npm install @gnosis.pm/dx-contracts --save
 ```
 
 To ensure that for local development, truffle finds all DutchX contract, we can
-create a dummy contract call `CoolAppDependencies.sol`.
+create a dummy contract call [CoolAppDependencies.sol](./contracts/CoolAppDependencies.sol).
 
 This contract won't do anything, it won't event have code, the important thing
 is that it must import `@gnosis.pm/dx-contracts/contracts/DxDevDependencies.sol`
