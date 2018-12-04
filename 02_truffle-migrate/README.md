@@ -71,7 +71,7 @@ Add the first migration and it's contract:
 
 Add the required dependencies
 ```bash
-npm install @gnosis.pm/dx-contracts --save
+npm install @gnosis.pm/dx-contracts --save-dev
 ```
 
 To ensure that for local development, truffle finds all DutchX contract, we can
