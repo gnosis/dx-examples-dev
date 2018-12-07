@@ -138,12 +138,19 @@ of the contracts deployed to the local ganache-cli.
 
 ![Deployed contracts](./docs/local-ganache-deployed-contracts.png "Deployed contracts")
 
-If we run `truffle console`, we'll be able to play arround with the deployed 
+If we run `npx truffle console`, we'll be able to play arround with the deployed 
 DutchX smart contracts.
 
 ```bash
-truffle console
+npx truffle console
 
+# Truffle 5 (web3 1.0)
+truffle(development)> dutchx = await DutchExchange.at(DutchExchangeProxy.address)
+truffle(development)> dutchx.auctioneer.call()
+truffle(development)> dutchx.thresholdNewAuction.call().then(n => n.toString())
+
+
+# Truffle 4 (web3 0.20)
 truffle(development)> dutchx = DutchExchange.at(DutchExchangeProxy.address)
 truffle(development)> dutchx.auctioneer.call()
 truffle(development)> dutchx.thresholdNewAuction.call().then(n => n.toNumber())
