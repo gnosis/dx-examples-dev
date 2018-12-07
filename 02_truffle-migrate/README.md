@@ -65,7 +65,8 @@ This truffle config file, has a pretty standard boilerplate config with:
   * It prints useful information
 
 ## Add the first migration and it's contract
-Just copy:
+Just copy the `Migrations` contract and it's migration (this is pretty common
+on all truffle projects):
 * [contracts/Migrations.sol](./contracts/Migrations.sol) into `contracts` dir
 * [migrations/1_initial_migration.js](./migrations/1_initial_migration.js) into `migrations` dir
 
@@ -75,35 +76,37 @@ npm install @gnosis.pm/dx-contracts --save-dev
 ```
 
 ## Make sure truffle finds the dependencies
-Ensure that for local development, truffle finds all DutchX contract.
+Copy the code from:
+* [contracts/CoolAppDependencies.sol](./contracts/CoolAppDependencies.sol).
 
-For that we cancreate a dummy contract called [CoolAppDependencies.sol](./contracts/CoolAppDependencies.sol).
+With this new contract, we ensure that for local development, truffle finds all 
+DutchX contract.
 
 This contract won't do anything, it won't event have code, the important thing
 is that it must import `@gnosis.pm/dx-contracts/contracts/DxDevDependencies.sol`
 so truffle will pull and compile all the required contracts.
 
-Copy the code from:
-* [contracts/CoolAppDependencies.sol](./contracts/CoolAppDependencies.sol).
-
 > For more information, check:
 >   * https://github.com/gnosis/dx-contracts/blob/master/contracts/DxDevDependencies.sol
 
 ## Compile DutchX contracts
-Compile the contracts. 
-
-We'll see how the `DutchExchange` is being compiled among all the other 
-contracts it depends on:
+Compile the contracts.
 
 ```bash
 npx truffle compile
-````
+```
+
+We'll see how the `DutchExchange` is being compiled among all the other 
+contracts it depends on:
 
 We should see something very similar to:
 
 ![Compiling contracts](./docs/compiling-contracts.png "Compiling contracts")
 
 ## Migrate the DutchX to local-ganache
+Copy this file into your project:
+* [migrations/2_DEV_migrate_dependencies.js](./migrations/2_DEV_migrate_dependencies.js)
+
 This truffle migration:
 * Only executes in the `development` network (Note that `rinkeby` and `mainet` 
 contracts are already deployed).
@@ -111,9 +114,6 @@ contracts are already deployed).
 * Uses the migration scripts that are in our NPM dependencies. **DutchX** NPM 
 module provides a simple migration source that can be referenced to ease the 
 local development.
-
-Hence, we just create our second migration file:
-* [migrations/2_DEV_migrate_dependencies.js](./migrations/2_DEV_migrate_dependencies.js)
 
 > For more information, check:
 >   * https://github.com/gnosis/dx-contracts/blob/master/src/migrations/index.js
