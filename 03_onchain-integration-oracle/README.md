@@ -108,7 +108,7 @@ contract Safe {
     // ...
     
     // 3. Add the DX address into the constructor of the contract
-    function Safe (address _dx) public {
+    constructor (address _dx) public {
         require(address(_dx) != address(0));
         dx = DutchExchange(_dx);
 
