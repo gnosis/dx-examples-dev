@@ -48,34 +48,36 @@ npm install --save-dev truffle@^5.0.0-beta.2 truffle-hdwallet-provider@^1.0.0-we
 > * *Example contracts*: Use the ones in the dir `[contracts-truffle-4](./contracts-truffle-4)`
 
 
-Add a truffle config:
-* Add [truffle.js](./truffle.js) into the root of the project. It has a pretty
-  standard boilerplate config with:
-    * **Networks**: Define networks: ganache-cli (development), rinkeby, kovan and mainnet.
-    * **Mnemonic**: Configured with a default test mnemonic. It allows to change
-      it by providing the `MNEMONIC` environment variable.
-        * Default Mnemonic: `candy maple cake sugar pudding cream honey rich smooth crumble sweet treat`
-        * Default address: `0x627306090abab3a6e1400e9345bc60c78a8bef57`
-        * `IMPORTANT`: Don't use this mnemonic for mainnet with real funds. This
-          is a public test mnemonic used in many projects.
-    * **Gas price**: Configured with a default gas price. It allows
-      to change it by providing the `GAS_PRICE_GWEI` environment variable.
-        * Default Gas Price: `5 Gwei`
-    * It prints useful information
+## Add a truffle config
+Add [truffle.js](./truffle.js) into the root of the project. 
 
-Add the first migration and it's contract:
+This truffle config file, has a pretty standard boilerplate config with:
+  * **Networks**: Define networks: ganache-cli (development), rinkeby, kovan and mainnet.
+  * **Mnemonic**: Configured with a default test mnemonic. It allows to change
+    it by providing the `MNEMONIC` environment variable.
+      * Default Mnemonic: `candy maple cake sugar pudding cream honey rich smooth crumble sweet treat`
+      * Default address: `0x627306090abab3a6e1400e9345bc60c78a8bef57`
+      * `IMPORTANT`: Don't use this mnemonic for mainnet with real funds. This
+        is a public test mnemonic used in many projects.
+  * **Gas price**: Configured with a default gas price. It allows
+    to change it by providing the `GAS_PRICE_GWEI` environment variable.
+      * Default Gas Price: `5 Gwei`
+  * It prints useful information
+
+## Add the first migration and it's contract
+Just copy:
 * [contracts/Migrations.sol](./contracts/Migrations.sol) into `contracts` dir
 * [migrations/1_initial_migration.js](./migrations/1_initial_migration.js) into `migrations` dir
 
-## Get DutchX dependencies and compiling it
-
-Add the required dependencies
+## Add DutchX as a NPM dependency
 ```bash
 npm install @gnosis.pm/dx-contracts --save-dev
 ```
 
-To ensure that for local development, truffle finds all DutchX contract, we can
-create a dummy contract call [CoolAppDependencies.sol](./contracts/CoolAppDependencies.sol).
+## Make sure truffle finds the dependencies
+Ensure that for local development, truffle finds all DutchX contract.
+
+For that we cancreate a dummy contract called [CoolAppDependencies.sol](./contracts/CoolAppDependencies.sol).
 
 This contract won't do anything, it won't event have code, the important thing
 is that it must import `@gnosis.pm/dx-contracts/contracts/DxDevDependencies.sol`
@@ -87,22 +89,24 @@ Copy the code from:
 > For more information, check:
 >   * https://github.com/gnosis/dx-contracts/blob/master/contracts/DxDevDependencies.sol
 
-Now, if we compile the contracts, we'll see how the `DutchExchange` is being 
-compiled among all the other contracts it depends on:
+## Compile DutchX contracts
+Compile the contracts. 
+
+We'll see how the `DutchExchange` is being compiled among all the other 
+contracts it depends on:
 
 ```bash
 npx truffle compile
 ````
 
-Now we should see how all DutchX contracts are being compiled:
+We should see something very similar to:
 
 ![Compiling contracts](./docs/compiling-contracts.png "Compiling contracts")
 
-## Add a new migration for the DutchX
-
-For the ease of use, following criteria should be met for the migration:
-* Only executes in the `development` network. Note that `rinkeby` and `mainet` 
-contracts are already deployed.
+## Migrate the DutchX to local-ganache
+This truffle migration:
+* Only executes in the `development` network (Note that `rinkeby` and `mainet` 
+contracts are already deployed).
 * Uses the contracts that are in our NPM dependencies, so we avoid repetition.
 * Uses the migration scripts that are in our NPM dependencies. **DutchX** NPM 
 module provides a simple migration source that can be referenced to ease the 
